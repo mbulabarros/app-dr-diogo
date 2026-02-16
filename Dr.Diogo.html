@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Diogo Kroetz | Pediatria  & Acupuntura</title>
+    <title>Dr. Diogo Kroetz | Pediatria & Acupuntura</title>
     <meta name="description" content="Dr. Diogo Kroetz - Pediatria & Acupuntura. Instituto Merak, Joinville-SC.">
     <meta name="theme-color" content="#1b3a2d">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,31 +16,17 @@
         :root{--moss:#1b3a2d;--fern:#2d6a4f;--leaf:#52b788;--sage:#95d5b2;--cream:#faf8f4;--sand:#f0ece4;--bark:#6b4f3a;--terracotta:#c96442;--honey:#e9a23b;--sky:#6ea8d7;--text:#2c2c2c;--text-soft:#6b6b6b;--white:#fff;--glass:rgba(255,255,255,0.92);--shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 20px rgba(0,0,0,0.07);--shadow-lg:0 12px 40px rgba(0,0,0,0.10);--shadow-glow:0 0 50px rgba(82,183,136,0.12);--r-sm:12px;--r-md:18px;--r-lg:24px}
         *{box-sizing:border-box;margin:0;padding:0}*::-webkit-scrollbar{width:0}
         body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--moss);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-
-        .splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,var(--moss),#142e22 50%,var(--fern));display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,transform .6s}
-        .splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
+        .splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,var(--moss),#142e22 50%,var(--fern));display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,transform .6s}.splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
         .splash-logo{width:90px;height:90px;border-radius:50%;border:3px solid rgba(255,255,255,.25);object-fit:cover;animation:sp 1.8s ease-in-out infinite;box-shadow:0 0 60px rgba(82,183,136,.3)}
         .splash-name{font-family:'Playfair Display',serif;color:#fff;font-size:1.5rem;margin-top:18px;opacity:0;animation:sf .8s .3s ease forwards}
         .splash-sub{color:var(--sage);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:6px;opacity:0;animation:sf .8s .6s ease forwards}
-        .splash-loader{width:40px;height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:28px;overflow:hidden}
-        .splash-loader::after{content:'';display:block;width:60%;height:100%;background:var(--leaf);border-radius:2px;animation:sl 1.2s ease-in-out infinite}
-        @keyframes sp{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
-        @keyframes sf{to{opacity:1}}
-        @keyframes sl{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
-
-        .leaf-particle{position:fixed;z-index:0;pointer-events:none;opacity:0;animation:lf linear infinite}
-        @keyframes lf{0%{opacity:0;transform:translateY(-20px) rotate(0)}10%{opacity:.3}90%{opacity:.15}100%{opacity:0;transform:translateY(100vh) rotate(360deg)}}
-
+        .splash-loader{width:40px;height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:28px;overflow:hidden}.splash-loader::after{content:'';display:block;width:60%;height:100%;background:var(--leaf);border-radius:2px;animation:sl 1.2s ease-in-out infinite}
+        @keyframes sp{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}@keyframes sf{to{opacity:1}}@keyframes sl{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+        .leaf-particle{position:fixed;z-index:0;pointer-events:none;opacity:0;animation:lf linear infinite}@keyframes lf{0%{opacity:0;transform:translateY(-20px) rotate(0)}10%{opacity:.3}90%{opacity:.15}100%{opacity:0;transform:translateY(100vh) rotate(360deg)}}
         .app{max-width:480px;margin:0 auto;min-height:100vh;position:relative;background:var(--cream);padding-bottom:90px;box-shadow:0 0 80px rgba(0,0,0,.25)}
         .app::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 15% 50%,rgba(82,183,136,.05),transparent 50%),radial-gradient(ellipse at 85% 15%,rgba(201,100,66,.03),transparent 50%);z-index:0;pointer-events:none}
-
-        .screen{position:relative;z-index:1;padding:20px 18px;display:none}
-        .screen.active{display:block;animation:si .4s cubic-bezier(.22,1,.36,1) forwards}
-        @keyframes si{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-
-        .hero{text-align:center;padding:35px 20px 20px;position:relative}
-        .hero::before{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:170px;height:170px;border-radius:50%;border:1px dashed rgba(82,183,136,.12);animation:rs 30s linear infinite}
-        @keyframes rs{to{transform:translateX(-50%) rotate(360deg)}}
+        .screen{position:relative;z-index:1;padding:20px 18px;display:none}.screen.active{display:block;animation:si .4s cubic-bezier(.22,1,.36,1) forwards}@keyframes si{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        .hero{text-align:center;padding:35px 20px 20px;position:relative}.hero::before{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:170px;height:170px;border-radius:50%;border:1px dashed rgba(82,183,136,.12);animation:rs 30s linear infinite}@keyframes rs{to{transform:translateX(-50%) rotate(360deg)}}
         .profile-ring{width:120px;height:120px;border-radius:50%;padding:3px;background:conic-gradient(from 0deg,var(--leaf),var(--fern),var(--terracotta),var(--honey),var(--leaf));display:inline-block;box-shadow:var(--shadow-lg),var(--shadow-glow);animation:hi .7s cubic-bezier(.22,1,.36,1) forwards;position:relative;z-index:1}
         .profile-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--white)}
         .hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--moss);margin:14px 0 2px;animation:hi .7s .1s cubic-bezier(.22,1,.36,1) both}
@@ -49,34 +34,28 @@
         .hero .crm{font-size:.7rem;color:var(--text-soft);margin-top:4px;opacity:.6;animation:hi .7s .22s cubic-bezier(.22,1,.36,1) both}
         .hero .institution{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:6px 16px;background:var(--sand);border-radius:20px;font-size:.7rem;color:var(--bark);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;animation:hi .7s .26s cubic-bezier(.22,1,.36,1) both}
         @keyframes hi{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-
         .menu-grid{display:flex;flex-direction:column;gap:10px;margin-top:8px}
-        .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--r-lg);padding:16px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent}
-        .card:active{transform:scale(.97)}
+        .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--r-lg);padding:16px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent}.card:active{transform:scale(.97)}
         .card-icon{width:46px;height:46px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-        .card-icon.green{background:rgba(82,183,136,.10);color:var(--fern)}.card-icon.orange{background:rgba(201,100,66,.08);color:var(--terracotta)}.card-icon.blue{background:rgba(110,168,215,.10);color:var(--sky)}.card-icon.honey{background:rgba(233,162,59,.10);color:var(--honey)}
+        .card-icon.green{background:rgba(82,183,136,.10);color:var(--fern)}.card-icon.orange{background:rgba(201,100,66,.08);color:var(--terracotta)}.card-icon.blue{background:rgba(110,168,215,.10);color:var(--sky)}.card-icon.honey{background:rgba(233,162,59,.10);color:var(--honey)}.card-icon.rose{background:rgba(214,64,69,.08);color:#d64045}
         .card h3{font-size:.95rem;font-weight:700;margin:0;color:var(--moss)}.card p{font-size:.8rem;color:var(--text-soft);margin:2px 0 0;line-height:1.35}
         .card-featured{background:linear-gradient(135deg,var(--fern),var(--moss));border:none;box-shadow:var(--shadow-md),var(--shadow-glow);position:relative;overflow:hidden}
         .card-featured h3{color:var(--white)}.card-featured p{color:rgba(255,255,255,.75)}.card-featured .card-icon{background:rgba(255,255,255,.12);color:var(--white)}
         .card-featured .badge{position:absolute;top:-6px;right:14px;background:var(--honey);color:var(--moss);font-size:.6rem;font-weight:800;padding:3px 10px;border-radius:10px;text-transform:uppercase;box-shadow:0 2px 8px rgba(233,162,59,.3)}
-        .menu-grid .card:nth-child(1){animation:hi .5s .2s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(2){animation:hi .5s .28s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(3){animation:hi .5s .36s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(4){animation:hi .5s .44s cubic-bezier(.22,1,.36,1) both}
-
-        .btn{width:100%;padding:15px 20px;border:none;border-radius:50px;font-family:inherit;font-size:.93rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s;-webkit-tap-highlight-color:transparent}
-        .btn:active{transform:scale(.97)}
+        .menu-grid .card:nth-child(1){animation:hi .5s .2s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(2){animation:hi .5s .28s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(3){animation:hi .5s .36s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(4){animation:hi .5s .44s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(5){animation:hi .5s .52s cubic-bezier(.22,1,.36,1) both}
+        .btn{width:100%;padding:15px 20px;border:none;border-radius:50px;font-family:inherit;font-size:.93rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s;-webkit-tap-highlight-color:transparent}.btn:active{transform:scale(.97)}
         .btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25);margin-top:18px}
         .btn-google{background:var(--white);color:var(--text);border:1.5px solid #e0e0e0;box-shadow:var(--shadow-sm);margin-top:12px}
         .btn-outline{background:transparent;color:var(--fern);border:2px solid var(--leaf);margin-top:12px}
         .btn-submit{background:linear-gradient(135deg,var(--fern),var(--moss));color:#fff;box-shadow:var(--shadow-md),var(--shadow-glow);margin-top:18px;font-size:.95rem;padding:16px}
         .btn-back{background:none;border:none;font-family:inherit;font-weight:700;color:var(--moss);cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-size:.9rem;margin-bottom:14px;padding:0}
-
         .section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--moss);margin-bottom:4px}
         .section-subtitle{font-size:.85rem;color:var(--text-soft);margin-bottom:18px;line-height:1.45}
         .form-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
         .form-card-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--sand)}
         .form-card-header .material-icons-round{font-size:20px;color:var(--fern)}.form-card-header h2{font-size:.9rem;font-weight:700;color:var(--moss)}
         .field{margin-bottom:14px}.field:last-child{margin-bottom:0}
-        .field label{display:block;font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:6px}
-        .field label .hint{font-weight:400;color:var(--text-soft);font-size:.76rem}
+        .field label{display:block;font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:6px}.field label .hint{font-weight:400;color:var(--text-soft);font-size:.76rem}
         input[type="text"],input[type="tel"],select,textarea{width:100%;padding:12px 13px;border:1.5px solid #e8e5e0;border-radius:var(--r-sm);background:var(--cream);font-family:inherit;font-size:16px;color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none}
         input:focus,select:focus,textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(82,183,136,.10)}
         textarea{resize:vertical;min-height:80px}
@@ -84,57 +63,40 @@
         input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--white);border:3px solid var(--fern);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .15s}
         input[type="range"]::-webkit-slider-thumb:active{transform:scale(1.2)}
         .slider-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-soft)}
-        .slider-value{text-align:center;font-weight:800;font-size:1.5rem;margin-top:2px;transition:color .3s}
-        .slider-value.low{color:var(--terracotta)}.slider-value.mid{color:var(--honey)}.slider-value.high{color:var(--fern)}
-
-        .progress-bar{display:flex;gap:5px;margin-bottom:20px}
-        .progress-step{flex:1;height:4px;border-radius:2px;background:#e4e4e4;transition:background .4s,box-shadow .4s}
-        .progress-step.done{background:var(--leaf)}.progress-step.active{background:var(--honey);box-shadow:0 0 8px rgba(233,162,59,.3)}
+        .slider-value{text-align:center;font-weight:800;font-size:1.5rem;margin-top:2px;transition:color .3s}.slider-value.low{color:var(--terracotta)}.slider-value.mid{color:var(--honey)}.slider-value.high{color:var(--fern)}
+        .progress-bar{display:flex;gap:5px;margin-bottom:20px}.progress-step{flex:1;height:4px;border-radius:2px;background:#e4e4e4;transition:background .4s,box-shadow .4s}.progress-step.done{background:var(--leaf)}.progress-step.active{background:var(--honey);box-shadow:0 0 8px rgba(233,162,59,.3)}
         .step-counter{text-align:center;font-size:.72rem;color:var(--text-soft);font-weight:600;margin-bottom:16px}.step-counter strong{color:var(--fern)}
-
+        /* Audience selector */
+        .audience-selector{display:flex;gap:10px;margin-bottom:18px}.audience-btn{flex:1;padding:16px 10px;border:2px solid #e0e0e0;border-radius:var(--r-md);background:var(--white);cursor:pointer;text-align:center;transition:all .2s;-webkit-tap-highlight-color:transparent}
+        .audience-btn.active{border-color:var(--leaf);background:var(--mint,#d8f3dc);box-shadow:0 0 0 3px rgba(82,183,136,.1)}
+        .audience-btn .aud-icon{font-size:2rem;margin-bottom:4px}.audience-btn .aud-label{font-size:.82rem;font-weight:700;color:var(--moss)}.audience-btn .aud-desc{font-size:.68rem;color:var(--text-soft);margin-top:2px}
         .treatment-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;gap:13px;align-items:flex-start;border-left:4px solid var(--leaf)}
-        .treatment-card .material-icons-round{color:var(--fern);font-size:26px;margin-top:1px}
-        .treatment-card h3{font-size:.92rem;margin:0 0 3px;color:var(--moss)}.treatment-card p{font-size:.8rem;color:var(--text-soft);line-height:1.4;margin:0}
-
-        .article-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;position:relative;overflow:hidden}
-        .article-card:active{transform:scale(.98)}
+        .treatment-card .material-icons-round{color:var(--fern);font-size:26px;margin-top:1px}.treatment-card h3{font-size:.92rem;margin:0 0 3px;color:var(--moss)}.treatment-card p{font-size:.8rem;color:var(--text-soft);line-height:1.4;margin:0}
+        .article-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;position:relative;overflow:hidden}.article-card:active{transform:scale(.98)}
         .article-card::after{content:'→';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--leaf);font-size:1.2rem;opacity:.4}
         .article-tag{display:inline-block;background:rgba(201,100,66,.07);color:var(--terracotta);padding:3px 10px;border-radius:20px;font-size:.65rem;font-weight:800;text-transform:uppercase}
-        .article-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin:7px 0 4px;color:var(--moss);padding-right:30px}
-        .article-card p{font-size:.82rem;color:var(--text-soft);line-height:1.4;padding-right:20px}
-
-        .contact-item{display:flex;align-items:center;gap:13px;padding:14px;background:var(--white);border-radius:var(--r-md);margin-bottom:8px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;text-decoration:none;color:inherit}
-        .contact-item:active{transform:scale(.97)}.contact-item .material-icons-round{font-size:22px}
-        .contact-item .label{font-weight:600;font-size:.9rem}.contact-item .detail{font-size:.78rem;color:var(--text-soft)}
-
+        .article-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin:7px 0 4px;color:var(--moss);padding-right:30px}.article-card p{font-size:.82rem;color:var(--text-soft);line-height:1.4;padding-right:20px}
+        .contact-item{display:flex;align-items:center;gap:13px;padding:14px;background:var(--white);border-radius:var(--r-md);margin-bottom:8px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;text-decoration:none;color:inherit}.contact-item:active{transform:scale(.97)}
+        .contact-item .material-icons-round{font-size:22px}.contact-item .label{font-weight:600;font-size:.9rem}.contact-item .detail{font-size:.78rem;color:var(--text-soft)}
         .result-card{background:linear-gradient(150deg,var(--fern),var(--moss) 70%);color:var(--white);border-radius:var(--r-lg);padding:28px 22px;text-align:center;margin-bottom:16px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
         .score-ring{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08);display:inline-flex;align-items:center;justify-content:center;margin:10px 0 8px;position:relative}
-        .score-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
-        .score-number{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;position:relative;z-index:1}
+        .score-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}.score-number{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;position:relative;z-index:1}
         .pillar-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0 0;position:relative;z-index:1}
-        .pillar-item{text-align:center;padding:8px 4px;background:rgba(255,255,255,.08);border-radius:var(--r-sm)}
-        .pillar-item .emoji{font-size:1.3rem}.pillar-item .val{font-size:.75rem;font-weight:700;margin-top:2px}.pillar-item .pname{font-size:.55rem;opacity:.6;margin-top:1px}
-        .result-bars{margin-top:20px;text-align:left;position:relative;z-index:1}
-        .result-bar-item{margin-bottom:10px}
+        .pillar-item{text-align:center;padding:8px 4px;background:rgba(255,255,255,.08);border-radius:var(--r-sm)}.pillar-item .emoji{font-size:1.3rem}.pillar-item .val{font-size:.75rem;font-weight:700;margin-top:2px}.pillar-item .pname{font-size:.55rem;opacity:.6;margin-top:1px}
+        .result-bars{margin-top:20px;text-align:left;position:relative;z-index:1}.result-bar-item{margin-bottom:10px}
         .result-bar-item .bar-label{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:4px;font-weight:600}
-        .bar-track{height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
-        .bar-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.22,1,.36,1)}
-
+        .bar-track{height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}.bar-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.22,1,.36,1)}
         .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:var(--white);padding:8px 0 calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:space-around;box-shadow:0 -4px 24px rgba(0,0,0,.06);border-top-left-radius:var(--r-lg);border-top-right-radius:var(--r-lg)}
-        .nav-item{text-align:center;color:#c0c0c0;text-decoration:none;font-size:.6rem;font-weight:600;flex:1;transition:color .2s;-webkit-tap-highlight-color:transparent;cursor:pointer;padding:4px 0}
-        .nav-item.active{color:var(--fern)}
-        .nav-item .material-icons-round{display:block;font-size:22px;margin-bottom:1px}
-        .nav-item.active::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--fern);margin:2px auto 0}
+        .nav-item{text-align:center;color:#c0c0c0;text-decoration:none;font-size:.6rem;font-weight:600;flex:1;transition:color .2s;-webkit-tap-highlight-color:transparent;cursor:pointer;padding:4px 0}.nav-item.active{color:var(--fern)}
+        .nav-item .material-icons-round{display:block;font-size:22px;margin-bottom:1px}.nav-item.active::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--fern);margin:2px auto 0}
         .footer-info{text-align:center;font-size:.68rem;color:var(--text-soft);opacity:.5;margin-top:25px;padding:0 20px;line-height:1.5}
-        .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--moss);color:var(--white);padding:12px 24px;border-radius:50px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .3s,transform .3s;z-index:200;pointer-events:none}
-        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-        .sending-overlay{position:fixed;inset:0;z-index:300;background:rgba(27,58,45,.85);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
-        .sending-overlay.show{opacity:1;pointer-events:auto}
-        .sending-overlay .ck{width:60px;height:60px;border-radius:50%;background:var(--leaf);display:flex;align-items:center;justify-content:center;animation:cb .5s cubic-bezier(.22,1,.36,1)}
-        .sending-overlay .ck .material-icons-round{color:#fff;font-size:32px}
-        .sending-overlay p{color:#fff;margin-top:14px;font-weight:600}
+        .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--moss);color:var(--white);padding:12px 24px;border-radius:50px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .3s,transform .3s;z-index:200;pointer-events:none}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        .sending-overlay{position:fixed;inset:0;z-index:300;background:rgba(27,58,45,.85);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}.sending-overlay.show{opacity:1;pointer-events:auto}
+        .sending-overlay .ck{width:60px;height:60px;border-radius:50%;background:var(--leaf);display:flex;align-items:center;justify-content:center;animation:cb .5s cubic-bezier(.22,1,.36,1)}.sending-overlay .ck .material-icons-round{color:#fff;font-size:32px}.sending-overlay p{color:#fff;margin-top:14px;font-weight:600}
         @keyframes cb{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
         .mt-16{margin-top:16px}.text-small{font-size:.76rem;color:var(--text-soft);text-align:center;margin-top:6px}
+        .emergency-banner{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:1.5px solid #ffb74d;border-radius:var(--r-md);padding:14px 16px;margin-top:12px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:transform .15s}.emergency-banner:active{transform:scale(.98)}
+        .emergency-banner .material-icons-round{color:#e65100;font-size:24px}.emergency-banner .em-text{font-size:.82rem;font-weight:600;color:#bf360c}.emergency-banner .em-sub{font-size:.72rem;color:#e65100;opacity:.8}
         @media(min-width:481px){.app{border-left:1px solid #eee;border-right:1px solid #eee}}
     </style>
 </head>
@@ -143,6 +105,7 @@
 <div class="sending-overlay" id="sendingOverlay"><div class="ck"><span class="material-icons-round">check</span></div><p>Abrindo WhatsApp...</p></div>
 <div class="app" id="app">
 
+<!-- HOME -->
 <div id="home" class="screen active">
     <div class="hero">
         <div class="profile-ring"><img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img"></div>
@@ -152,43 +115,68 @@
         <div class="institution"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</div>
     </div>
     <div class="menu-grid">
-        <div class="card card-featured" onclick="navTo('mev')"><span class="badge">Novo</span><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde MEV</h3><p>Raio-X do estilo de vida: sono, nutrição, emoções e mais.</p></div></div>
-        <div class="card" onclick="navTo('treatments')"><div class="card-icon orange"><span class="material-icons-round">medical_services</span></div><div><h3>Nossa Abordagem</h3><p>Pediatria focada na causa raiz.</p></div></div>
+        <div class="card card-featured" onclick="navTo('mev')"><span class="badge">Novo</span><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde</h3><p>Raio-X do estilo de vida: sono, nutrição, emoções e mais.</p></div></div>
+        <div class="card" onclick="navTo('treatments')"><div class="card-icon orange"><span class="material-icons-round">medical_services</span></div><div><h3>Nossa Abordagem</h3><p>Cuidado focado na causa raiz.</p></div></div>
         <div class="card" onclick="navTo('contact')"><div class="card-icon blue"><span class="material-icons-round">calendar_today</span></div><div><h3>Agendar Consulta</h3><p>Presencial ou Telemedicina.</p></div></div>
         <div class="card" onclick="navTo('articles')"><div class="card-icon honey"><span class="material-icons-round">auto_stories</span></div><div><h3>Conteúdos & Artigos</h3><p>Conhecimento para famílias conscientes.</p></div></div>
     </div>
-    <button class="btn btn-google" onclick="window.open(CONFIG.googleReviews,'_blank')" style="animation:hi .5s .52s cubic-bezier(.22,1,.36,1) both"><span class="material-icons-round" style="color:#FBBC04">star</span> Avalie no Google</button>
+    <!-- Emergência / Encaixe -->
+    <div class="emergency-banner" onclick="window.open('tel:+5547999730160')">
+        <span class="material-icons-round">emergency</span>
+        <div><div class="em-text">Precisa de atendimento urgente?</div><div class="em-sub">Ligue direto para a clínica · (47) 99973-0160</div></div>
+    </div>
+    <button class="btn btn-google" onclick="window.open(CONFIG.googleReviews,'_blank')" style="animation:hi .5s .56s cubic-bezier(.22,1,.36,1) both"><span class="material-icons-round" style="color:#FBBC04">star</span> Avalie no Google</button>
     <div class="footer-info">Conteúdo informativo — não substitui consulta médica.<br>© 2025 Dr. Diogo Kroetz · Instituto Merak<br><span style="opacity:.6">Desenvolvido com 🌿 por MbulaApps</span></div>
 </div>
 
+<!-- MEV -->
 <div id="mev" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
-    <h1 class="section-title">Raio-X da Saúde 🌿</h1>
-    <p class="section-subtitle">Avaliação baseada nos pilares da <strong>Medicina do Estilo de Vida</strong>. Preencha com calma — seus dados são enviados diretamente ao consultório.</p>
+    <h1 class="section-title">Avaliação de Saúde 🌿</h1>
+    <p class="section-subtitle">Preencha com calma — seus dados são enviados diretamente ao consultório do Dr. Diogo.</p>
+
+    <!-- Seletor: Criança ou Adulto -->
+    <div class="audience-selector" id="audienceSelector">
+        <div class="audience-btn active" onclick="setAudience('child')" id="audChild">
+            <div class="aud-icon">👶</div>
+            <div class="aud-label">Criança</div>
+            <div class="aud-desc">Até 18 anos</div>
+        </div>
+        <div class="audience-btn" onclick="setAudience('adult')" id="audAdult">
+            <div class="aud-icon">🧑</div>
+            <div class="aud-label">Adulto</div>
+            <div class="aud-desc">Puérperas, mães e pais</div>
+        </div>
+    </div>
+
     <div class="progress-bar" id="progressBar"><div class="progress-step active"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div></div>
     <div class="step-counter" id="stepCounter">Etapa <strong>1</strong> de 6</div>
 
+    <!-- STEP 1: Identificação -->
     <div class="mev-step" id="step1">
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">person</span><h2>Identificação do Paciente</h2></div>
-        <div class="field"><label>Nome completo da criança</label><input type="text" id="mevNome" placeholder="Ex: Maria Clara Silva"></div>
-        <div class="field"><label>Idade</label><input type="text" id="mevIdade" placeholder="Ex: 4 anos e 3 meses"></div>
+        <div class="field"><label id="labelNome">Nome completo da criança</label><input type="text" id="mevNome" placeholder="Ex: Maria Clara Silva"></div>
+        <div class="field"><label id="labelIdade">Idade</label><input type="text" id="mevIdade" placeholder="Ex: 4 anos e 3 meses"></div>
         <div class="field"><label>Nome do responsável</label><input type="text" id="mevResponsavel" placeholder="Nome do pai/mãe/responsável"></div>
-        <div class="field"><label>Telefone (WhatsApp)</label><input type="tel" id="mevTelefone" placeholder="(47) 99999-9999"></div></div>
+        <div class="field"><label>Telefone (WhatsApp)</label><input type="tel" id="mevTelefone" placeholder="(47) 99999-9999"></div>
+        <div class="field"><label>Qual o perfil do paciente? <span class="hint">(O que motivou a busca)</span></label><select id="mevPerfil"><option value="">Selecione...</option><option value="Check-up de rotina">🌱 Check-up de rotina</option><option value="Queixa específica">🩺 Queixa específica</option><option value="Puérpera/Pós-parto">🤱 Puérpera / Pós-parto</option><option value="Segunda opinião">🔍 Segunda opinião</option><option value="Mudança de hábitos">🌿 Quer mudar estilo de vida</option></select></div></div>
         <button class="btn btn-submit" onclick="nextStep(2)">Continuar <span class="material-icons-round">arrow_forward</span></button>
     </div>
 
+    <!-- STEP 2: Sono & Alimentação -->
     <div class="mev-step" id="step2" style="display:none">
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">bedtime</span><h2>Sono & Energia</h2></div>
         <div class="field"><label>Qualidade do Sono <span class="hint">(0=péssimo · 10=excelente)</span></label><input type="range" id="mevSono" min="0" max="10" value="5" oninput="updateSlider(this,'sonoVal')"><div class="slider-value mid" id="sonoVal">5</div><div class="slider-labels"><span>😫 Agitado</span><span>Reparador 😴</span></div></div>
-        <div class="field"><label>Horas de sono por noite</label><select id="mevHorasSono"><option value="">Selecione...</option><option value="Menos de 8h">😴 Menos de 8h</option><option value="8-10h">😊 8 a 10h</option><option value="10-12h">🌟 10 a 12h</option><option value="Mais de 12h">💤 Mais de 12h</option></select></div>
-        <div class="field"><label>Dificuldade para dormir?</label><select id="mevDificSono"><option value="Não">Não, dorme bem</option><option value="Demora a pegar">Demora a pegar no sono</option><option value="Acorda à noite">Acorda várias vezes</option><option value="Pesadelos">Pesadelos frequentes</option></select></div></div>
+        <div class="field"><label>Horas de sono por noite</label><select id="mevHorasSono"><option value="">Selecione...</option><option value="Menos de 6h">😴 Menos de 6h</option><option value="6-8h">🙂 6 a 8h</option><option value="8-10h">😊 8 a 10h</option><option value="10-12h">🌟 10 a 12h</option><option value="Mais de 12h">💤 Mais de 12h</option></select></div>
+        <div class="field"><label>Dificuldade para dormir?</label><select id="mevDificSono"><option value="Não">Não, dorme bem</option><option value="Demora a pegar">Demora a pegar no sono</option><option value="Acorda à noite">Acorda várias vezes</option><option value="Pesadelos">Pesadelos frequentes</option><option value="Insônia">Insônia</option></select></div></div>
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">restaurant</span><h2>Alimentação</h2></div>
         <div class="field"><label>Qualidade da alimentação <span class="hint">(0 a 10)</span></label><input type="range" id="mevAlimentacao" min="0" max="10" value="5" oninput="updateSlider(this,'alimentVal')"><div class="slider-value mid" id="alimentVal">5</div><div class="slider-labels"><span>🍟 Ultraprocessados</span><span>Comida de verdade 🥦</span></div></div>
         <div class="field"><label>Tipo predominante de dieta</label><select id="mevDieta"><option value="">Selecione...</option><option value="Natural/Orgânica">🥦 Natural / orgânica</option><option value="Equilibrada">🍽️ Equilibrada</option><option value="Muito industrializada">🍟 Industrializada</option><option value="Seletiva">⚠️ Seletividade alimentar</option></select></div>
-        <div class="field"><label>Consome frutas e vegetais?</label><select id="mevFrutas"><option value="Diariamente">🍎 Sim, diariamente</option><option value="Às vezes">🤷 Às vezes</option><option value="Raramente">😕 Raramente</option><option value="Nunca">❌ Nunca / Recusa</option></select></div></div>
+        <div class="field"><label>Consome frutas e vegetais?</label><select id="mevFrutas"><option value="Diariamente">🍎 Sim, diariamente</option><option value="Às vezes">🤷 Às vezes</option><option value="Raramente">😕 Raramente</option><option value="Nunca">❌ Nunca</option></select></div></div>
         <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(1)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(3)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
+    <!-- STEP 3: Intestino, Hidratação, Atividade -->
     <div class="mev-step" id="step3" style="display:none">
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">water_drop</span><h2>Intestino & Hidratação</h2></div>
         <div class="field"><label>Padrão Intestinal <span class="hint">(Escala de Bristol)</span></label><select id="mevIntestino"><option value="">Selecione...</option><option value="Tipo 1-2: Constipado">🪨 Tipo 1-2: Endurecidas</option><option value="Tipo 3-4: Normal">✅ Tipo 3-4: Normal</option><option value="Tipo 5-6: Amolecido">🌊 Tipo 5-6: Amolecidas</option><option value="Tipo 7: Diarreia">⚠️ Tipo 7: Diarreia</option><option value="Irregular">🔄 Irregular</option></select></div>
@@ -196,22 +184,24 @@
         <div class="field"><label>Hidratação</label><select id="mevAgua"><option value="Pouca água">💧 Pouca água</option><option value="Adequada">🌊 Adequada</option><option value="Muita água">🚰 Bastante água</option><option value="Só suco/refrigerante">🥤 Prefere suco/refri</option></select></div></div>
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">directions_run</span><h2>Atividade Física</h2></div>
         <div class="field"><label>Nível de atividade <span class="hint">(0 a 10)</span></label><input type="range" id="mevAtivFisica" min="0" max="10" value="5" oninput="updateSlider(this,'ativVal')"><div class="slider-value mid" id="ativVal">5</div><div class="slider-labels"><span>🛋️ Sedentário</span><span>Muito ativo ⚽</span></div></div>
-        <div class="field"><label>Pratica esporte?</label><select id="mevEsporte"><option value="Sim, regularmente">⚽ Sim, regularmente</option><option value="Às vezes">🤸 De vez em quando</option><option value="Não, sedentário">📱 Não, mais em telas</option></select></div></div>
+        <div class="field"><label id="labelEsporte">Pratica esporte?</label><select id="mevEsporte"><option value="Sim, regularmente">⚽ Sim, regularmente</option><option value="Às vezes">🤸 De vez em quando</option><option value="Não, sedentário">📱 Não, sedentário</option></select></div></div>
         <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(2)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(4)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
+    <!-- STEP 4: Emocional & Social -->
     <div class="mev-step" id="step4" style="display:none">
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">psychology</span><h2>Humor & Saúde Mental</h2></div>
-        <div class="field"><label>Humor da criança <span class="hint">(0 a 10)</span></label><input type="range" id="mevHumor" min="0" max="10" value="5" oninput="updateSlider(this,'humorVal')"><div class="slider-value mid" id="humorVal">5</div><div class="slider-labels"><span>😢 Triste/Irritado</span><span>Alegre/Tranquilo 😊</span></div></div>
-        <div class="field"><label>Sinais emocionais</label><select id="mevEmocional"><option value="Equilibrado">😊 Equilibrado</option><option value="Ansioso">😰 Ansiedade</option><option value="Irritável">😤 Irritabilidade</option><option value="Triste">😢 Tristeza/Apatia</option><option value="Medos">😨 Medos excessivos</option></select></div>
-        <div class="field"><label>Autoestima</label><select id="mevPerspectiva"><option value="Positiva">🌟 Positiva/Confiante</option><option value="Normal">🙂 Normal</option><option value="Inseguro">😟 Inseguro</option></select></div></div>
+        <div class="field"><label>Humor geral <span class="hint">(0 a 10)</span></label><input type="range" id="mevHumor" min="0" max="10" value="5" oninput="updateSlider(this,'humorVal')"><div class="slider-value mid" id="humorVal">5</div><div class="slider-labels"><span>😢 Triste/Irritado</span><span>Alegre/Tranquilo 😊</span></div></div>
+        <div class="field"><label>Sinais emocionais</label><select id="mevEmocional"><option value="Equilibrado">😊 Equilibrado</option><option value="Ansioso">😰 Ansiedade</option><option value="Irritável">😤 Irritabilidade</option><option value="Triste">😢 Tristeza/Apatia</option><option value="Medos">😨 Medos excessivos</option><option value="Sobrecarga">🫠 Sobrecarga / Burnout</option></select></div>
+        <div class="field"><label>Autoestima / Perspectiva</label><select id="mevPerspectiva"><option value="Positiva">🌟 Positiva</option><option value="Normal">🙂 Normal</option><option value="Inseguro">😟 Inseguro / Baixa</option></select></div></div>
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">groups</span><h2>Relacionamentos & Ambiente</h2></div>
         <div class="field"><label>Ambiente familiar</label><select id="mevFamilia"><option value="Harmônico">❤️ Harmônico</option><option value="Tenso">⚡ Conflituoso</option><option value="Luto/Separação">💔 Luto ou separação</option></select></div>
-        <div class="field"><label>Socialização</label><select id="mevSocial"><option value="Boa">👫 Boa, tem amigos</option><option value="Tímida">🙈 Tímida</option><option value="Dificuldade">⚠️ Dificuldade</option></select></div>
+        <div class="field"><label id="labelSocial">Socialização</label><select id="mevSocial"><option value="Boa">👫 Boa</option><option value="Tímida">🙈 Tímida / Retraída</option><option value="Dificuldade">⚠️ Dificuldade</option></select></div>
         <div class="field"><label>Contato com natureza <span class="hint">(0 a 10)</span></label><input type="range" id="mevNatureza" min="0" max="10" value="5" oninput="updateSlider(this,'naturezaVal')"><div class="slider-value mid" id="naturezaVal">5</div><div class="slider-labels"><span>🏢 Quase nunca</span><span>Diariamente 🌳</span></div></div></div>
         <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(3)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(5)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
+    <!-- STEP 5: Telas, Substâncias -->
     <div class="mev-step" id="step5" style="display:none">
         <div class="form-card"><div class="form-card-header"><span class="material-icons-round">devices</span><h2>Tempo de Tela</h2></div>
         <div class="field"><label>Tempo médio de tela/dia</label><select id="mevTelas"><option value="">Selecione...</option><option value="Menos de 1h">🟢 Menos de 1h</option><option value="1-2h">🟡 1 a 2h</option><option value="2-4h">🟠 2 a 4h</option><option value="Mais de 4h">🔴 Mais de 4h</option></select></div>
@@ -220,45 +210,49 @@
         <div class="field"><label>Uso contínuo de medicamentos?</label><select id="mevMedicamentos" onchange="toggleMed()"><option value="Nenhum">Nenhum</option><option value="Sim">Sim</option></select></div>
         <div class="field" id="fieldMedDetalhe" style="display:none"><label>Quais?</label><input type="text" id="mevMedDetalhe" placeholder="Ex: Vitamina D, Ferro..."></div>
         <div class="field"><label>Suplementos em uso?</label><input type="text" id="mevSuplementos" placeholder="Ex: Nenhum, Ômega-3..."></div>
-        <div class="field"><label>Exposição passiva? <span class="hint">(fumantes, etc.)</span></label><select id="mevSubstancias"><option value="Não">Não</option><option value="Tabaco">🚬 Fumantes em casa</option><option value="Outros">⚠️ Outros</option></select></div></div>
+        <div class="field"><label id="labelSubst">Exposição a substâncias? <span class="hint">(fumantes, álcool, etc.)</span></label><select id="mevSubstancias"><option value="Não">Não</option><option value="Tabaco">🚬 Tabaco</option><option value="Álcool">🍷 Álcool</option><option value="Outros">⚠️ Outros</option></select></div></div>
         <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(4)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(6)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
+    <!-- STEP 6: Observações -->
     <div class="mev-step" id="step6" style="display:none">
-        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">edit_note</span><h2>Observações & Preocupações</h2></div>
-        <div class="field"><label>Queixa principal</label><textarea id="mevQueixa" placeholder="O que mais preocupa sobre a saúde da criança..."></textarea></div>
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">edit_note</span><h2>Observações & Expectativas</h2></div>
+        <div class="field"><label>Queixa principal</label><textarea id="mevQueixa" placeholder="O que mais preocupa sobre a saúde do paciente..."></textarea></div>
         <div class="field"><label>Outras observações</label><textarea id="mevObs" placeholder="Alergias, histórico familiar, cirurgias..."></textarea></div>
-        <div class="field"><label>Expectativa do acompanhamento</label><select id="mevExpectativa"><option value="Prevenção">🌱 Prevenção (check-up)</option><option value="Queixa específica">🩺 Queixa específica</option><option value="Segunda opinião">🔍 Segunda opinião</option><option value="MEV">🌿 Reestruturar estilo de vida</option></select></div></div>
+        <div class="field"><label>O que espera do acompanhamento?</label><textarea id="mevExpectativa" placeholder="Descreva suas expectativas com relação à consulta..."></textarea></div></div>
         <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(5)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="showResult()" style="flex:2"><span class="material-icons-round">check_circle</span> Ver Resultado</button></div>
     </div>
-
     <div class="mev-step" id="stepResult" style="display:none"></div>
 </div>
 
+<!-- TREATMENTS -->
 <div id="treatments" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Nossa Abordagem 🌱</h1>
-    <p class="section-subtitle">Medicina Pediatria  com foco na causa raiz.</p>
-    <div class="treatment-card"><span class="material-icons-round">local_florist</span><div><h3>Puericultura Pediatria </h3><p>Crescimento, vacinas, marcos do desenvolvimento e orientação global.</p></div></div>
+    <p class="section-subtitle">Cuidado com foco na causa raiz — olhando o paciente como um todo.</p>
+    <div class="treatment-card"><span class="material-icons-round">local_florist</span><div><h3>Puericultura</h3><p>Crescimento, vacinas, marcos do desenvolvimento e orientação global.</p></div></div>
     <div class="treatment-card"><span class="material-icons-round">restaurant</span><div><h3>Nutrição & Suplementação</h3><p>Correção de carências vitamínicas e orientação alimentar personalizada.</p></div></div>
-    <div class="treatment-card"><span class="material-icons-round">psychology</span><div><h3>Saúde Mental & Comportamento</h3><p>Sono, ansiedade, TDAH e autorregulação emocional Pediatria .</p></div></div>
-    <div class="treatment-card"><span class="material-icons-round">spa</span><div><h3>Medicina do Estilo de Vida</h3><p>6 pilares: sono, alimentação, atividade, estresse, relações, substâncias.</p></div></div>
-    <div class="treatment-card"><span class="material-icons-round">eco</span><div><h3>Conexão com a Natureza</h3><p>Agrofloresta como ferramenta terapêutica e de desenvolvimento.</p></div></div>
-    <div class="treatment-card"><span class="material-icons-round">self_improvement</span><div><h3>Acupuntura Pediátrica</h3><p>Técnicas suaves para equilíbrio energético e alívio de sintomas.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">psychology</span><div><h3>Saúde Mental & Comportamento</h3><p>Sono, ansiedade, TDAH e autorregulação emocional.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">spa</span><div><h3>Estilo de Vida Saudável</h3><p>6 pilares: sono, alimentação, atividade, estresse, relações, substâncias.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">eco</span><div><h3>Conexão com a Natureza</h3><p>Contato com a natureza como ferramenta terapêutica e de bem-estar.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">self_improvement</span><div><h3>Acupuntura</h3><p>Técnicas para equilíbrio energético e alívio de sintomas diversos.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">pregnant_woman</span><div><h3>Saúde da Mulher & Puerpério</h3><p>Acompanhamento de puérperas, saúde materna e bem-estar pós-parto.</p></div></div>
     <button class="btn btn-whatsapp mt-16" onclick="openWhatsApp()"><span class="material-icons-round">chat</span> Quero saber mais</button>
 </div>
 
+<!-- ARTICLES -->
 <div id="articles" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Conteúdos 📚</h1>
     <p class="section-subtitle">Conhecimento para famílias que buscam saúde de verdade.</p>
     <div class="article-card"><span class="article-tag">Sono</span><h3>Higiene do Sono: Guia Prático</h3><p>Rotina noturna sem telas e sem batalhas.</p></div>
-    <div class="article-card"><span class="article-tag">Imunidade</span><h3>Alimentos da Agrofloresta</h3><p>Alimentos naturais e sazonais na imunidade infantil.</p></div>
-    <div class="article-card"><span class="article-tag">MEV</span><h3>Os 6 Pilares do Estilo de Vida</h3><p>Como os pilares moldam a saúde da família.</p></div>
-    <div class="article-card"><span class="article-tag">Desenvolvimento</span><h3>Brincar é Coisa Séria</h3><p>Neurociência do brincar livre vs. apps educativos.</p></div>
+    <div class="article-card"><span class="article-tag">Imunidade</span><h3>Alimentos da Agrofloresta</h3><p>Alimentos naturais e sazonais na imunidade.</p></div>
+    <div class="article-card"><span class="article-tag">Bem-estar</span><h3>Os 6 Pilares do Estilo de Vida</h3><p>Como os pilares moldam a saúde da família.</p></div>
+    <div class="article-card"><span class="article-tag">Desenvolvimento</span><h3>Brincar é Coisa Séria</h3><p>Neurociência do brincar livre vs. apps.</p></div>
     <div class="footer-info" style="margin-top:16px">Novos artigos em breve!</div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Contato & Agendamento 📞</h1>
@@ -277,7 +271,7 @@
 <div class="toast" id="toast"></div>
 <nav class="bottom-nav">
     <a class="nav-item active" data-screen="home" onclick="navTo('home')"><span class="material-icons-round">home</span>Início</a>
-    <a class="nav-item" data-screen="mev" onclick="navTo('mev')"><span class="material-icons-round">spa</span>MEV</a>
+    <a class="nav-item" data-screen="mev" onclick="navTo('mev')"><span class="material-icons-round">spa</span>Saúde</a>
     <a class="nav-item" data-screen="articles" onclick="navTo('articles')"><span class="material-icons-round">auto_stories</span>Artigos</a>
     <a class="nav-item" data-screen="contact" onclick="navTo('contact')"><span class="material-icons-round">call</span>Contato</a>
 </nav>
@@ -285,23 +279,45 @@
 
 <script>
 const CONFIG={whatsappNumber:'5547999730160',doctorName:'Dr. Diogo',googleReviews:'https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville'};
+let audience='child';
 
 window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1800);createLeaves()});
-
 function createLeaves(){const l=['🍃','🌿','☘️'],c=document.querySelector('.app');for(let i=0;i<5;i++){const e=document.createElement('div');e.className='leaf-particle';e.textContent=l[Math.floor(Math.random()*l.length)];e.style.left=Math.random()*100+'%';e.style.animationDuration=(14+Math.random()*16)+'s';e.style.animationDelay=Math.random()*12+'s';e.style.fontSize=(10+Math.random()*6)+'px';c.appendChild(e)}}
+
+function setAudience(type){
+    audience=type;
+    document.getElementById('audChild').classList.toggle('active',type==='child');
+    document.getElementById('audAdult').classList.toggle('active',type==='adult');
+    if(type==='child'){
+        document.getElementById('labelNome').textContent='Nome completo da criança';
+        document.getElementById('mevNome').placeholder='Ex: Maria Clara Silva';
+        document.getElementById('labelIdade').textContent='Idade';
+        document.getElementById('mevIdade').placeholder='Ex: 4 anos e 3 meses';
+        document.getElementById('labelEsporte').textContent='Pratica esporte?';
+        document.getElementById('labelSubst').innerHTML='Exposição passiva? <span class="hint">(fumantes em casa, etc.)</span>';
+        document.getElementById('labelSocial').textContent='Socialização com outras crianças';
+    } else {
+        document.getElementById('labelNome').textContent='Nome completo do paciente';
+        document.getElementById('mevNome').placeholder='Ex: Ana Paula Souza';
+        document.getElementById('labelIdade').textContent='Idade';
+        document.getElementById('mevIdade').placeholder='Ex: 32 anos';
+        document.getElementById('labelEsporte').textContent='Pratica atividade física?';
+        document.getElementById('labelSubst').innerHTML='Uso de álcool, tabaco ou outras substâncias?';
+        document.getElementById('labelSocial').textContent='Vida social e rede de apoio';
+    }
+}
 
 let currentScreen='home';
 function navTo(id){const c=document.querySelector('.screen.active');if(c){c.classList.remove('active');c.style.display='none'}const t=document.getElementById(id);t.style.display='block';void t.offsetWidth;t.classList.add('active');currentScreen=id;window.scrollTo({top:0,behavior:'smooth'});document.querySelectorAll('.nav-item').forEach(i=>i.classList.toggle('active',i.dataset.screen===id));if(id==='mev'&&currentStep==='result')resetMEV()}
 
 let currentStep=1;
-function nextStep(s){if(currentStep===1&&!document.getElementById('mevNome').value.trim()){showToast('⚠️ Preencha o nome da criança');return}anim(currentStep,s)}
+function nextStep(s){if(currentStep===1&&!document.getElementById('mevNome').value.trim()){showToast('⚠️ Preencha o nome do paciente');return}anim(currentStep,s)}
 function prevStep(s){anim(currentStep,s)}
 function anim(from,to){const f=document.getElementById('step'+from),t=document.getElementById('step'+to);f.style.opacity='0';f.style.transform='translateX('+(to>from?'-20px':'20px')+')';setTimeout(()=>{f.style.display='none';f.style.opacity='';f.style.transform='';t.style.display='block';t.style.opacity='0';t.style.transform='translateX('+(to>from?'20px':'-20px')+')';void t.offsetWidth;t.style.transition='opacity .3s,transform .3s';t.style.opacity='1';t.style.transform='translateX(0)';setTimeout(()=>t.style.transition='',300)},200);currentStep=to;updProg();window.scrollTo({top:0,behavior:'smooth'})}
 function updProg(){document.querySelectorAll('.progress-step').forEach((s,i)=>{s.classList.remove('done','active');if(i<currentStep-1)s.classList.add('done');if(i===currentStep-1)s.classList.add('active')});const c=document.getElementById('stepCounter');if(c&&typeof currentStep==='number')c.innerHTML='Etapa <strong>'+currentStep+'</strong> de 6'}
 
 function updateSlider(el,id){const v=parseInt(el.value),t=document.getElementById(id);t.textContent=v;t.classList.remove('low','mid','high');t.classList.add(v<=3?'low':v<=6?'mid':'high');const p=(v/10)*100;el.style.background='linear-gradient(to right,var(--terracotta) 0%,var(--honey) '+p/2+'%,var(--leaf) '+p+'%,#e0e0e0 '+p+'%,#e0e0e0 100%)'}
 document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input[type="range"]').forEach(s=>{const m=s.getAttribute('oninput')?.match(/'(\w+)'/);if(m)updateSlider(s,m[1])})});
-
 function toggleMed(){document.getElementById('fieldMedDetalhe').style.display=document.getElementById('mevMedicamentos').value==='Sim'?'block':'none'}
 
 function showResult(){
@@ -312,7 +328,7 @@ function showResult(){
     const circ=2*Math.PI*46,off=circ-(pct/100)*circ;
     let ph=ps.map(p=>'<div class="pillar-item"><div class="emoji">'+p.e+'</div><div class="val">'+sc[p.k]+'/10</div><div class="pname">'+p.n+'</div></div>').join('');
     let bh=ps.map(p=>{const w=sc[p.k]*10,c=w>=70?'#95d5b2':w>=40?'#e9a23b':'#d64045';return'<div class="result-bar-item"><div class="bar-label"><span>'+p.e+' '+p.n+'</span><span>'+sc[p.k]+'/10</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:'+c+'" data-w="'+w+'%"></div></div></div>'}).join('');
-    document.getElementById('stepResult').innerHTML='<div class="result-card"><p style="font-size:.82rem;opacity:.7;margin-bottom:2px">Resultado da Avaliação MEV</p><div class="score-ring"><svg width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="55" cy="55" r="46" fill="none" stroke="'+cor+'" stroke-width="6" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" id="scoreArc"/></svg><span class="score-number">'+pct+'%</span></div><p style="font-size:1.1rem;font-weight:700;margin-bottom:2px">'+niv+'</p><p style="font-size:.78rem;opacity:.7">Índice de Estilo de Vida Saudável</p><div class="pillar-summary">'+ph+'</div><div class="result-bars">'+bh+'</div></div><button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="material-icons-round">send</span> Enviar para o '+CONFIG.doctorName+'</button><p class="text-small">Abre seu WhatsApp com os dados completos.</p><button class="btn btn-outline" onclick="resetMEV()"><span class="material-icons-round">refresh</span> Nova Avaliação</button>';
+    document.getElementById('stepResult').innerHTML='<div class="result-card"><p style="font-size:.82rem;opacity:.7;margin-bottom:2px">Resultado da Avaliação</p><div class="score-ring"><svg width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="55" cy="55" r="46" fill="none" stroke="'+cor+'" stroke-width="6" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" id="scoreArc"/></svg><span class="score-number">'+pct+'%</span></div><p style="font-size:1.1rem;font-weight:700;margin-bottom:2px">'+niv+'</p><p style="font-size:.78rem;opacity:.7">Índice de Estilo de Vida Saudável</p><div class="pillar-summary">'+ph+'</div><div class="result-bars">'+bh+'</div></div><button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="material-icons-round">send</span> Enviar para o '+CONFIG.doctorName+'</button><p class="text-small">Abre seu WhatsApp com os dados completos.</p><button class="btn btn-outline" onclick="resetMEV()"><span class="material-icons-round">refresh</span> Nova Avaliação</button>';
     document.getElementById('step'+currentStep).style.display='none';document.getElementById('stepResult').style.display='block';currentStep='result';document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));document.getElementById('stepCounter').innerHTML='<strong>✅ Completo</strong>';
     setTimeout(()=>{const a=document.getElementById('scoreArc');if(a){a.style.transition='stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)';a.style.strokeDashoffset=off}document.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w)},200);
     window.scrollTo({top:0,behavior:'smooth'})
@@ -322,7 +338,8 @@ function enviarWhatsApp(){
     document.getElementById('sendingOverlay').classList.add('show');
     setTimeout(()=>{document.getElementById('sendingOverlay').classList.remove('show');
     const g=id=>{const e=document.getElementById(id);if(!e)return'—';if(e.type==='range')return e.value+'/10';return e.value||'—'};
-    const t=`🌿 *AVALIAÇÃO MEV — PEDIATRIA Pediatria *\n━━━━━━━━━━━━━━━━━━━━━━\n\n👤 *PACIENTE*\n• Nome: ${g('mevNome')}\n• Idade: ${g('mevIdade')}\n• Responsável: ${g('mevResponsavel')}\n• Tel: ${g('mevTelefone')}\n\n😴 *SONO*\n• Qualidade: ${g('mevSono')}\n• Horas: ${g('mevHorasSono')}\n• Dificuldade: ${g('mevDificSono')}\n\n🥦 *ALIMENTAÇÃO*\n• Qualidade: ${g('mevAlimentacao')}\n• Dieta: ${g('mevDieta')}\n• Frutas: ${g('mevFrutas')}\n\n🚽 *INTESTINO*\n• Bristol: ${g('mevIntestino')}\n• Frequência: ${g('mevFreqEvac')}\n• Hidratação: ${g('mevAgua')}\n\n🏃 *ATIVIDADE*\n• Nível: ${g('mevAtivFisica')}\n• Esporte: ${g('mevEsporte')}\n\n🧠 *EMOCIONAL*\n• Humor: ${g('mevHumor')}\n• Sinais: ${g('mevEmocional')}\n• Autoestima: ${g('mevPerspectiva')}\n\n👨‍👩‍👧 *SOCIAL*\n• Família: ${g('mevFamilia')}\n• Social: ${g('mevSocial')}\n• Natureza: ${g('mevNatureza')}\n\n📱 *TELAS*\n• Tempo: ${g('mevTelas')}\n• À noite: ${g('mevTelaNoite')}\n• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos')==='Sim'?' → '+g('mevMedDetalhe'):''}\n• Suplementos: ${g('mevSuplementos')}\n• Exposição: ${g('mevSubstancias')}\n\n📋 *OBSERVAÇÕES*\n• Queixa: ${g('mevQueixa')}\n• Outras: ${g('mevObs')}\n• Expectativa: ${g('mevExpectativa')}\n\n━━━━━━━━━━━━━━━━━━━━━━\n_📊 Via WebApp ${CONFIG.doctorName}_`;
+    const tipo=audience==='child'?'CRIANÇA':'ADULTO';
+    const t=`🌿 *AVALIAÇÃO DE SAÚDE — ${tipo}*\n━━━━━━━━━━━━━━━━━━━━━━\n\n👤 *PACIENTE*\n• Nome: ${g('mevNome')}\n• Idade: ${g('mevIdade')}\n• Responsável: ${g('mevResponsavel')}\n• Tel: ${g('mevTelefone')}\n• Perfil: ${g('mevPerfil')}\n\n😴 *SONO*\n• Qualidade: ${g('mevSono')}\n• Horas: ${g('mevHorasSono')}\n• Dificuldade: ${g('mevDificSono')}\n\n🥦 *ALIMENTAÇÃO*\n• Qualidade: ${g('mevAlimentacao')}\n• Dieta: ${g('mevDieta')}\n• Frutas: ${g('mevFrutas')}\n\n🚽 *INTESTINO*\n• Bristol: ${g('mevIntestino')}\n• Frequência: ${g('mevFreqEvac')}\n• Hidratação: ${g('mevAgua')}\n\n🏃 *ATIVIDADE*\n• Nível: ${g('mevAtivFisica')}\n• Esporte: ${g('mevEsporte')}\n\n🧠 *EMOCIONAL*\n• Humor: ${g('mevHumor')}\n• Sinais: ${g('mevEmocional')}\n• Autoestima: ${g('mevPerspectiva')}\n\n👨‍👩‍👧 *SOCIAL*\n• Família: ${g('mevFamilia')}\n• Social: ${g('mevSocial')}\n• Natureza: ${g('mevNatureza')}\n\n📱 *TELAS*\n• Tempo: ${g('mevTelas')}\n• À noite: ${g('mevTelaNoite')}\n• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos')==='Sim'?' → '+g('mevMedDetalhe'):''}\n• Suplementos: ${g('mevSuplementos')}\n• Substâncias: ${g('mevSubstancias')}\n\n📋 *OBSERVAÇÕES*\n• Queixa: ${g('mevQueixa')}\n• Outras: ${g('mevObs')}\n• Expectativa: ${g('mevExpectativa')}\n\n━━━━━━━━━━━━━━━━━━━━━━\n_📊 Via WebApp ${CONFIG.doctorName}_`;
     window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(t),'_blank')},1200)}
 
 function openWhatsApp(){window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent('Olá! Gostaria de mais informações sobre o consultório do '+CONFIG.doctorName+'.'),'_blank')}
@@ -333,7 +350,3 @@ function showToast(m){const t=document.getElementById('toast');t.textContent=m;t
 </script>
 </body>
 </html>
-
-
-
-
