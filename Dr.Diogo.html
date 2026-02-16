@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dr. Diogo Kroetz | Pediatria Integrativa</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta Agrofloresta & Natureza */
+            --forest-dark: #1e3a29;   /* Verde Musgo Profundo */
+            --leaf-green: #4a7c59;    /* Verde Folha */
+            --fruit-accent: #d35d47;  /* Vermelho Fruto (Detalhes) */
+            --earth-brown: #8d6e63;   /* Terra */
+            --sand-bg: #f4f1ea;       /* Areia (Fundo suave) */
+            --glass-white: rgba(255, 255, 255, 0.94); /* Vidro */
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--sand-bg);
+            color: var(--forest-dark);
+            min-height: 100vh;
+        }
+
+        /* Fundo com textura de natureza (Efeito visual) */
+        .app-container {
+            max-width: 480px; margin: 0 auto;
+            min-height: 100vh; position: relative; padding-bottom: 90px;
+            /* Imagem de fundo abstrata de folhas */
+            background: url('https://images.unsplash.com/photo-1502086223501-686db62bf442?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Máscara para suavizar o fundo */
+        .overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(244, 241, 234, 0.92) 0%, rgba(244, 241, 234, 0.75) 100%);
+            backdrop-filter: blur(4px); z-index: 1;
+        }
+
+        /* Telas (SPA) */
+        .screen {
+            position: relative; z-index: 2; padding: 20px;
+            display: none; animation: fadeIn 0.4s ease-in-out;
+        }
+        .screen.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HEADER & PERFIL --- */
+        header { text-align: center; margin-top: 35px; margin-bottom: 25px; }
+        
+        .profile-img {
+            width: 120px; height: 120px; border-radius: 50%;
+            /* Borda Branca para destacar o pijama azul */
+            border: 5px solid white; 
+            object-fit: cover; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        h1 { font-size: 1.6rem; color: var(--forest-dark); margin: 12px 0 0; font-weight: 700; }
+        p.subtitle { color: var(--leaf-green); font-weight: 600; font-size: 0.95rem; margin: 0; }
+        .institution { 
+            font-size: 0.75rem; color: var(--earth-brown); 
+            letter-spacing: 1.5px; margin-top: 8px; 
+            text-transform: uppercase; font-weight: bold; opacity: 0.8;
+        }
+
+        /* --- CARDS DE MENU --- */
+        .card-menu {
+            background: var(--glass-white);
+            border-radius: 20px; padding: 18px; margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex; align-items: center; gap: 15px;
+            cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+        .card-menu:active { transform: scale(0.97); }
+        
+        .icon-box {
+            width: 48px; height: 48px; background: rgba(74, 124, 89, 0.1);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            color: var(--leaf-green);
+        }
+        
+        /* Destaque para Avaliação MEV */
+        .card-highlight { 
+            background: linear-gradient(135deg, var(--leaf-green), var(--forest-dark)); 
+            color: white; border: none;
+        }
+        .card-highlight .icon-box { background: rgba(255,255,255,0.2); color: white; }
+        .card-highlight p { color: rgba(255,255,255,0.9) !important; }
+        
+        .card-text h3 { margin: 0; font-size: 1.1rem; }
+        .card-text p { margin: 3px 0 0; font-size: 0.85rem; color: #666; }
+
+        /* --- FORMULÁRIOS MEV --- */
+        .form-section {
+            background: var(--glass-white); border-radius: 16px;
+            padding: 18px; margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .form-section h2 {
+            font-size: 1rem; color: var(--leaf-green);
+            border-bottom: 1px solid #eee; padding-bottom: 8px; margin-top: 0;
+            display: flex; align-items: center; gap: 8px;
+        }
+        
+        label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: #444; }
+        
+        /* Sliders Personalizados */
+        input[type=range] { 
+            width: 100%; margin: 10px 0; -webkit-appearance: none; background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 20px; width: 20px;
+            border-radius: 50%; background: var(--leaf-green);
+            cursor: pointer; margin-top: -8px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; background: #ddd; border-radius: 2px;
+        }
+        
+        select, input[type="text"], textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd;
+            border-radius: 10px; background: #fff; font-family: inherit; margin-bottom: 10px;
+            font-size: 16px; /* Evita zoom no iPhone */
+        }
+
+        /* --- TRATAMENTOS E ARTIGOS --- */
+        .treatment-item {
+            display: flex; align-items: start; gap: 12px; margin-bottom: 15px;
+            padding-bottom: 12px; border-bottom: 1px dashed #ddd;
+        }
+        .treatment-item:last-child { border-bottom: none; }
+        .check-icon { color: var(--leaf-green); font-weight: bold; margin-top: 2px; }
+
+        .article-card {
+            background: white; border-radius: 15px; padding: 15px; margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-left: 5px solid var(--fruit-accent);
+        }
+        .tag { 
+            background: #fdf2f0; color: var(--fruit-accent); 
+            padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-back {
+            background: none; border: none; font-weight: bold;
+            color: var(--forest-dark); cursor: pointer;
+            display: flex; align-items: center; gap: 5px; margin-bottom: 15px;
+            padding: 0; font-size: 0.95rem;
+        }
+        
+        .btn-action {
+            width: 100%; padding: 16px; border: none; border-radius: 50px;
+            font-size: 1.05rem; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 15px; transition: transform 0.2s;
+        }
+        .btn-action:active { transform: scale(0.98); }
+        
+        .btn-whatsapp { background-color: #25D366; color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        .btn-google { background-color: #4285F4; color: white; }
+
+        /* --- MENU FIXO INFERIOR --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+            background: white; padding: 12px 0;
+            display: flex; justify-content: space-around;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            max-width: 480px; margin: 0 auto;
+            border-top-left-radius: 25px; border-top-right-radius: 25px;
+        }
+        .nav-item { text-align: center; color: #b0bec5; text-decoration: none; font-size: 0.7rem; flex: 1; transition: color 0.3s; }
+        .nav-item.active { color: var(--leaf-green); font-weight: bold; }
+        .nav-item span { display: block; font-size: 26px; margin-bottom: 2px; }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="overlay"></div>
+
+    <div id="home-screen" class="screen active">
+        <header>
+            <img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img">
+            <h1>Dr. Diogo Kroetz</h1>
+            <p class="subtitle">Pediatria Integrativa & MEV</p>
+            <div class="institution">Instituto Merak</div> </header>
+
+        <div class="card-menu card-highlight" onclick="navTo('mev-screen')">
+            <div class="icon-box"><span class="material-icons-round">spa</span></div>
+            <div class="card-text">
+                <h3>Avaliação de Saúde (MEV)</h3>
+                <p>Raio-X dos hábitos: Sono, Nutrição e Emoções.</p>
+            </div>
+        </div>
+
+        <div class="card-menu" onclick="navTo('treatments-screen')">
+            <div class="icon-box"><span class="material-icons-round">medical_services</span></div>
+            <div class="card-text">
+                <h3>Tratamentos</h3>
+                <p>Abordagem integrativa e Puericultura.</p>
+            </div>
+        </div>
+
+        <div class="card-menu" onclick="alert('Aqui abrirá o link do Feegow ou WhatsApp da Secretária!')">
+            <div class="icon-box"><span class="material-icons-round">calendar_today</span></div>
+            <div class="card-text">
+                <h3>Agendar Consulta</h3>
+                <p>Presencial ou Telemedicina.</p>
+            </div>
+        </div>
+
+        <button class="btn-action btn-google" onclick="window.open('https://google.com', '_blank')">
+            <span class="material-icons-round">star</span>
+            Ver Avaliações no Google
+        </button>
+    </div>
+
+    <div id="mev-screen" class="screen">
+        <button class="btn-back" onclick="navTo('home-screen')">
+            <span class="material-icons-round">arrow_back</span> Voltar
+        </button>
+
+        <h1 style="font-size:1.4rem; color:var(--leaf-green);">Raio-X da Saúde 🌿</h1>
+        <p style="font-size: 0.9rem; margin-bottom: 20px; color:#666;">Responda para analisarmos o estilo de vida da criança.</p>
+
+        <div class="form-section">
+            <h2><span class="material-icons-round">person</span> Paciente</h2>
+            <input type="text" id="nome" placeholder="Nome Completo da Criança">
+            <input type="text" id="idade" placeholder="Idade (ex: 4 anos)">
+        </div>
+
+        <div class="form-section">
+            <h2><span class="material-icons-round">bedtime</span> Sono & Energia</h2>
+            <label>Qualidade do Sono (0 a 10)</label>
+            <input type="range" id="sono" min="0" max="10" value="5">
+            <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#888;">
+                <span>Agitado</span><span>Reparador</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2><span class="material-icons-round">wc</span> Intestino & Água</h2>
+            <label>Padrão Evacuatório (Cocô)</label>
+            <select id="intestino">
+                <option value="">Selecione...</option>
+                <option value="Normal">✅ Diário e normal</option>
+                <option value="Ressecado">🌵 Ressecado / Constipado</option>
+                <option value="Amolecido">🌊 Amolecido / Diarreia</option>
+                <option value="Irregular">⚠️ Muito irregular</option>
+            </select>
+            
+            <label>Hidratação</label>
+            <select id="agua">
+                <option value="Pouca">💧 Bebe pouca água</option>
+                <option value="Adequada">🌊 Quantidade adequada</option>
+                <option value="Muita">🚰 Bebe muita água</option>
+            </select>
+        </div>
+
+        <div class="form-section">
+            <h2><span class="material-icons-round">park</span> Ambiente & Social</h2>
+            <label>Contato com Natureza (0 a 10)</label>
+            <input type="range" id="natureza" min="0" max="10" value="5">
+            
+            <label style="margin-top:15px;">Tempo de Tela / Lazer</label>
+            <select id="lazer">
+                <option value="Equilibrado">⚽ Brinca/Corre (Ativo)</option>
+                <option value="Telas">📱 Apenas Telas/TV</option>
+                <option value="Escasso">📉 Pouco tempo livre</option>
+            </select>
+
+            <label style="margin-top:15px;">Relacionamento Familiar</label>
+            <select id="familia">
+                <option value="Harmônico">❤️ Harmônico/Apoio</option>
+                <option value="Estressante">⚡ Conflituoso</option>
+            </select>
+        </div>
+
+        <button class="btn-action btn-whatsapp" onclick="enviarAvaliacao()">
+            <span class="material-icons-round">send</span> ENVIAR PARA O DR. DIOGO
+        </button>
+        <p style="text-align:center; font-size:0.75rem; color:#999; margin-top:10px;">
+            Abre seu WhatsApp direto com a secretária.
+        </p>
+    </div>
+
+    <div id="treatments-screen" class="screen">
+        <button class="btn-back" onclick="navTo('home-screen')">
+            <span class="material-icons-round">arrow_back</span> Voltar
+        </button>
+        <h1 style="font-size:1.4rem; color:var(--leaf-green);">Nossa Abordagem</h1>
+        <p style="margin-bottom:20px; color:#666;">Medicina Integrativa com foco na causa raiz.</p>
+        
+        <div class="form-section">
+            <div class="treatment-item">
+                <span class="material-icons-round check-icon">local_florist</span>
+                <div>
+                    <strong>Puericultura Integrativa</strong><br>
+                    <small>Acompanhamento de crescimento, vacinas e desenvolvimento global.</small>
+                </div>
+            </div>
+            <div class="treatment-item">
+                <span class="material-icons-round check-icon">restaurant</span>
+                <div>
+                    <strong>Nutrição & Suplementação</strong><br>
+                    <small>Correção de carências vitamínicas e orientação alimentar.</small>
+                </div>
+            </div>
+            <div class="treatment-item">
+                <span class="material-icons-round check-icon">psychology</span>
+                <div>
+                    <strong>Saúde Mental & Comportamento</strong><br>
+                    <small>Suporte para sono, ansiedade e questões escolares.</small>
+                </div>
+            </div>
+            <div class="treatment-item">
+                <span class="material-icons-round check-icon">spa</span>
+                <div>
+                    <strong>Medicina do Estilo de Vida</strong><br>
+                    <small>Ajustes nos 6 pilares da saúde para prevenir doenças.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="articles-screen" class="screen">
+        <button class="btn-back" onclick="navTo('home-screen')">
+            <span class="material-icons-round">arrow_back</span> Voltar
+        </button>
+        <h1 style="font-size:1.4rem; color:var(--leaf-green);">Conteúdos</h1>
+        
+        <div class="article-card">
+            <span class="tag">Sono Infantil</span>
+            <h3 style="margin:8px 0;">Higiene do Sono: O Guia</h3>
+            <p style="font-size:0.9rem; color:#666;">Como preparar o ambiente para uma noite tranquila e sem telas.</p>
+        </div>
+        <div class="article-card">
+            <span class="tag">Imunidade</span>
+            <h3 style="margin:8px 0;">Alimentos da Agrofloresta</h3>
+            <p style="font-size:0.9rem; color:#666;">O poder dos alimentos naturais na saúde da criança.</p>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="navTo('home-screen')">
+            <span class="material-icons-round">home</span>Início
+        </a>
+        <a href="#" class="nav-item" onclick="navTo('articles-screen')">
+            <span class="material-icons-round">article</span>Artigos
+        </a>
+        <a href="#" class="nav-item" onclick="window.open('https://wa.me/5547999999999', '_blank')">
+            <span class="material-icons-round">chat</span>Contato
+        </a>
+    </nav>
+</div>
+
+<script>
+    // Navegação Simples (SPA)
+    function navTo(screenId) {
+        // Esconde todas as telas
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        // Mostra a selecionada
+        document.getElementById(screenId).classList.add('active');
+        // Rola para o topo
+        window.scrollTo(0,0);
+        
+        // Atualiza ícones do menu inferior
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        if(screenId === 'home-screen') document.querySelectorAll('.nav-item')[0].classList.add('active');
+        if(screenId === 'articles-screen') document.querySelectorAll('.nav-item')[1].classList.add('active');
+    }
+
+    // Função de Envio WhatsApp (Formata o Texto Bonito)
+    function enviarAvaliacao() {
+        // --- CONFIGURAÇÃO: Coloque o número dele aqui ---
+        const PHONE = "5547999999999"; 
+        
+        const nome = document.getElementById('nome').value;
+        const idade = document.getElementById('idade').value;
+        const sono = document.getElementById('sono').value;
+        const intestino = document.getElementById('intestino').value;
+        const agua = document.getElementById('agua').value;
+        const natureza = document.getElementById('natureza').value;
+        const lazer = document.getElementById('lazer').value;
+        const familia = document.getElementById('familia').value;
+
+        if(!nome) { alert("Por favor, preencha pelo menos o nome da criança."); return; }
+
+        // Texto formatado com emojis para leitura rápida
+        const texto = `
+🌿 *AVALIAÇÃO MEV - PEDIATRIA*
+---------------------------
+👤 *Paciente:* ${nome} (${idade})
+
+😴 *Sono (0-10):* ${sono}
+🚽 *Intestino:* ${intestino}
+💧 *Hidratação:* ${agua}
+
+🌳 *Natureza (0-10):* ${natureza}
+🤹 *Lazer/Telas:* ${lazer}
+❤️ *Família:* ${familia}
+---------------------------
+_Enviado via App Dr. Diogo_`;
+
+        // Gera o link e abre
+        const link = `https://wa.me/${PHONE}?text=${encodeURIComponent(texto)}`;
+        window.open(link, '_blank');
+    }
+</script>
+
+</body>
+</html>
