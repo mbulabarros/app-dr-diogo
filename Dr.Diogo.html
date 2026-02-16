@@ -179,14 +179,13 @@
 <div class="confetti-container" id="confettiBox"></div>
 <div class="app" id="app">
 
-<!-- HOME -->
 <div id="home" class="screen active">
     <div class="hero">
         <div class="profile-ring"><img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img"></div>
         <h1>Dr. Diogo Kroetz</h1>
         <p class="tagline">Pediatria & Acupuntura</p>
         <div class="crm">CRM-SC 12260 · RQE 12417 · RQE 12418</div>
-        <a class="institution" href="https://www.instagram.com/institutomerak" target="_blank"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</a>
+        <a class="institution" href="https://www.instagram.com/institutomerak" target="_blank" style="text-decoration:none"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</a>
     </div>
     <div class="menu-grid">
         <div class="card card-featured" onclick="navTo('mev')"><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde</h3><p>Raio-X da saúde: sono, nutrição, emoções e mais.</p></div></div>
@@ -199,18 +198,27 @@
         <div><div class="em-text">Precisa de atendimento urgente?</div><div class="em-sub">Ligue direto para a clínica · (47) 99973-0160</div></div>
     </div>
     <button class="btn btn-google" onclick="window.open(CONFIG.googleReviews,'_blank')" style="animation:hi .5s .7s cubic-bezier(.22,1,.36,1) both"><span class="material-icons-round" style="color:#FBBC04">star</span> Avalie no Google</button>
-    <div class="footer-info">Conteúdo informativo — não substitui consulta médica.<br>© 2025 Dr. Diogo Kroetz · Instituto Merak<br><span style="opacity:.6">Desenvolvido com 🌿 por MbulaApps</span></div>
+    <div class="footer-info">Conteúdo informativo — não substitui consulta médica.<br>© 2025 Dr. Diogo Kroetz · Instituto Merak<br><span style="opacity:.6">Tecnologia AIMED Pro</span></div>
 </div>
 
-<!-- MEV -->
 <div id="mev" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Avaliação de Saúde 🌿</h1>
     <p class="section-subtitle">Preencha com calma — seus dados são enviados diretamente ao consultório do Dr. Diogo.</p>
+
     <div class="audience-selector" id="audienceSelector">
-        <div class="audience-btn active" onclick="setAudience('child')" id="audChild"><div class="aud-icon">👶</div><div class="aud-label">Criança</div><div class="aud-desc">Até 18 anos</div></div>
-        <div class="audience-btn" onclick="setAudience('adult')" id="audAdult"><div class="aud-icon">🧑</div><div class="aud-label">Adulto</div><div class="aud-desc">Puérperas, mães e pais</div></div>
+        <div class="audience-btn active" onclick="setAudience('child')" id="audChild">
+            <div class="aud-icon">👶</div>
+            <div class="aud-label">Criança</div>
+            <div class="aud-desc">Até 18 anos</div>
+        </div>
+        <div class="audience-btn" onclick="setAudience('adult')" id="audAdult">
+            <div class="aud-icon">🧑</div>
+            <div class="aud-label">Adulto</div>
+            <div class="aud-desc">Puérperas, mães e pais</div>
+        </div>
     </div>
+
     <div class="progress-bar" id="progressBar"><div class="progress-step active"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div></div>
     <div class="step-counter" id="stepCounter">Etapa <strong>1</strong> de 6</div>
 
@@ -281,7 +289,6 @@
     <div class="mev-step" id="stepResult" style="display:none"></div>
 </div>
 
-<!-- TREATMENTS -->
 <div id="treatments" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Nossa Abordagem 🌱</h1>
@@ -296,7 +303,6 @@
     <button class="btn btn-whatsapp mt-16" onclick="openWhatsApp()"><span class="material-icons-round">chat</span> Quero saber mais</button>
 </div>
 
-<!-- ARTICLES -->
 <div id="articles" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Conteúdos 📚</h1>
@@ -308,14 +314,13 @@
     <div class="footer-info" style="margin-top:16px">Novos artigos em breve!</div>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Contato & Agendamento 📞</h1>
     <p class="section-subtitle">Estamos no <strong>Instituto Merak</strong>.</p>
     <a class="contact-item" href="https://wa.me/5547999730160?text=Olá!%20Gostaria%20de%20agendar%20consulta%20com%20o%20Dr.%20Diogo." target="_blank"><span class="material-icons-round" style="color:#25D366">chat</span><div><span class="label">WhatsApp — Secretária</span><br><span class="detail">Agendar consulta ou dúvidas</span></div></a>
     <a class="contact-item" href="tel:+5547999730160"><span class="material-icons-round" style="color:var(--fern)">call</span><div><span class="label">Telefone</span><br><span class="detail">(47) 99973-0160</span></div></a>
-    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Av.+Santos+Dumont,+2400+-+Distrito+Industrial,+Joinville+-+SC" target="_blank"><span class="material-icons-round" style="color:var(--terracotta)">location_on</span><div><span class="label">Instituto Merak</span><br><span class="detail">Av. Santos Dumont, 2400 — Joinville</span></div></a>
+    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Av+Santos+Dumont+2400" target="_blank"><span class="material-icons-round" style="color:var(--terracotta)">location_on</span><div><span class="label">Instituto Merak</span><br><span class="detail">Av. Santos Dumont, 2400 — Joinville</span></div></a>
     <a class="contact-item" href="https://www.instagram.com/diogoviniciuskroetz" target="_blank"><span class="material-icons-round" style="color:#E1306C">photo_camera</span><div><span class="label">Instagram</span><br><span class="detail">@diogoviniciuskroetz</span></div></a>
     <div class="form-card mt-16"><div class="form-card-header"><span class="material-icons-round">event</span><h2>Modalidades</h2></div>
     <div class="field"><label>🏥 <strong>Presencial</strong> — Instituto Merak</label></div>
@@ -337,18 +342,9 @@
 const CONFIG={whatsappNumber:'5547999730160',doctorName:'Dr. Diogo',googleReviews:'https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville'};
 let audience='child';
 
-// ===== SPLASH =====
-window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),800)},2000);createLeaves()});
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1800);createLeaves()});
+function createLeaves(){const l=['🍃','🌿','☘️'],c=document.querySelector('.app');for(let i=0;i<5;i++){const e=document.createElement('div');e.className='leaf-particle';e.textContent=l[Math.floor(Math.random()*l.length)];e.style.left=Math.random()*100+'%';e.style.animationDuration=(14+Math.random()*16)+'s';e.style.animationDelay=Math.random()*12+'s';e.style.fontSize=(10+Math.random()*6)+'px';c.appendChild(e)}}
 
-function createLeaves(){const l=['🍃','🌿','☘️','🌱'],c=document.querySelector('.app');for(let i=0;i<6;i++){const e=document.createElement('div');e.className='leaf-particle';e.textContent=l[Math.floor(Math.random()*l.length)];e.style.left=Math.random()*100+'%';e.style.animationDuration=(16+Math.random()*18)+'s';e.style.animationDelay=Math.random()*15+'s';e.style.fontSize=(10+Math.random()*8)+'px';c.appendChild(e)}}
-
-// ===== CONFETTI =====
-function fireConfetti(){const box=document.getElementById('confettiBox');const colors=['#52b788','#95d5b2','#e9a23b','#c96442','#6ea8d7','#faf8f4','#2d6a4f'];for(let i=0;i<50;i++){const c=document.createElement('div');c.className='confetti';c.style.left=Math.random()*100+'%';c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDuration=(1.5+Math.random()*2)+'s';c.style.animationDelay=Math.random()*.5+'s';c.style.width=(4+Math.random()*6)+'px';c.style.height=(4+Math.random()*6)+'px';c.style.borderRadius=Math.random()>.5?'50%':'1px';box.appendChild(c)}setTimeout(()=>box.innerHTML='',4000)}
-
-// ===== COUNTER ANIMATION =====
-function animateCount(el,target){let current=0;const step=Math.max(1,Math.floor(target/30));const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer)}el.textContent=current+'%'},30)}
-
-// ===== AUDIENCE =====
 function setAudience(type){
     audience=type;
     document.getElementById('audChild').classList.toggle('active',type==='child');
@@ -372,44 +368,33 @@ function setAudience(type){
     }
 }
 
-// ===== NAVIGATION =====
 let currentScreen='home';
 function navTo(id){const c=document.querySelector('.screen.active');if(c){c.classList.remove('active');c.style.display='none'}const t=document.getElementById(id);t.style.display='block';void t.offsetWidth;t.classList.add('active');currentScreen=id;window.scrollTo({top:0,behavior:'smooth'});document.querySelectorAll('.nav-item').forEach(i=>i.classList.toggle('active',i.dataset.screen===id));if(id==='mev'&&currentStep==='result')resetMEV()}
 
-// ===== STEPS =====
 let currentStep=1;
 function nextStep(s){if(currentStep===1&&!document.getElementById('mevNome').value.trim()){showToast('⚠️ Preencha o nome do paciente');return}anim(currentStep,s)}
 function prevStep(s){anim(currentStep,s)}
-function anim(from,to){const f=document.getElementById('step'+from),t=document.getElementById('step'+to);const dir=to>from?1:-1;f.style.transition='opacity .25s,transform .25s';f.style.opacity='0';f.style.transform='translateX('+(-dir*25)+'px)';setTimeout(()=>{f.style.display='none';f.style.transition='';f.style.opacity='';f.style.transform='';t.style.display='block';t.style.opacity='0';t.style.transform='translateX('+(dir*25)+'px)';void t.offsetWidth;t.style.transition='opacity .35s cubic-bezier(.22,1,.36,1),transform .35s cubic-bezier(.22,1,.36,1)';t.style.opacity='1';t.style.transform='translateX(0)';setTimeout(()=>t.style.transition='',350)},250);currentStep=to;updProg();window.scrollTo({top:0,behavior:'smooth'})}
+function anim(from,to){const f=document.getElementById('step'+from),t=document.getElementById('step'+to);f.style.opacity='0';f.style.transform='translateX('+(to>from?'-20px':'20px')+')';setTimeout(()=>{f.style.display='none';f.style.opacity='';f.style.transform='';t.style.display='block';t.style.opacity='0';t.style.transform='translateX('+(to>from?'20px':'-20px')+')';void t.offsetWidth;t.style.transition='opacity .3s,transform .3s';t.style.opacity='1';t.style.transform='translateX(0)';setTimeout(()=>t.style.transition='',300)},200);currentStep=to;updProg();window.scrollTo({top:0,behavior:'smooth'})}
 function updProg(){document.querySelectorAll('.progress-step').forEach((s,i)=>{s.classList.remove('done','active');if(i<currentStep-1)s.classList.add('done');if(i===currentStep-1)s.classList.add('active')});const c=document.getElementById('stepCounter');if(c&&typeof currentStep==='number')c.innerHTML='Etapa <strong>'+currentStep+'</strong> de 6'}
 
-// ===== SLIDER V3 =====
-function updateSlider(el,id){const v=parseInt(el.value),t=document.getElementById(id);t.textContent=v;t.classList.remove('low','mid','high','pop');t.classList.add(v<=3?'low':v<=6?'mid':'high');t.classList.add('pop');setTimeout(()=>t.classList.remove('pop'),200);const p=(v/10)*100;el.style.background='linear-gradient(to right,var(--terracotta) 0%,var(--honey) '+p/2+'%,var(--leaf) '+p+'%,#e0e0e0 '+p+'%,#e0e0e0 100%)'}
+function updateSlider(el,id){const v=parseInt(el.value),t=document.getElementById(id);t.textContent=v;t.classList.remove('low','mid','high');t.classList.add(v<=3?'low':v<=6?'mid':'high');const p=(v/10)*100;el.style.background='linear-gradient(to right,var(--terracotta) 0%,var(--honey) '+p/2+'%,var(--leaf) '+p+'%,#e0e0e0 '+p+'%,#e0e0e0 100%)'}
 document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input[type="range"]').forEach(s=>{const m=s.getAttribute('oninput')?.match(/'(\w+)'/);if(m)updateSlider(s,m[1])})});
 function toggleMed(){document.getElementById('fieldMedDetalhe').style.display=document.getElementById('mevMedicamentos').value==='Sim'?'block':'none'}
 
-// ===== RESULT V3 =====
 function showResult(){
     const sc={sono:+document.getElementById('mevSono').value,alimentacao:+document.getElementById('mevAlimentacao').value,ativFisica:+document.getElementById('mevAtivFisica').value,humor:+document.getElementById('mevHumor').value,natureza:+document.getElementById('mevNatureza').value};
     const total=Object.values(sc).reduce((a,b)=>a+b,0),pct=Math.round(total/50*100);
     let niv,cor;if(pct>=75){niv='🌟 Excelente';cor='#52b788'}else if(pct>=50){niv='🌿 Bom';cor='#e9a23b'}else if(pct>=30){niv='⚠️ Atenção';cor='#c96442'}else{niv='🚨 Alerta';cor='#d64045'}
     const ps=[{k:'sono',e:'😴',n:'Sono'},{k:'alimentacao',e:'🥦',n:'Aliment.'},{k:'ativFisica',e:'⚽',n:'Atividade'},{k:'humor',e:'🧠',n:'Humor'},{k:'natureza',e:'🌳',n:'Natureza'}];
-    const circ=2*Math.PI*50,off=circ-(pct/100)*circ;
+    const circ=2*Math.PI*46,off=circ-(pct/100)*circ;
     let ph=ps.map(p=>'<div class="pillar-item"><div class="emoji">'+p.e+'</div><div class="val">'+sc[p.k]+'/10</div><div class="pname">'+p.n+'</div></div>').join('');
     let bh=ps.map(p=>{const w=sc[p.k]*10,c=w>=70?'#95d5b2':w>=40?'#e9a23b':'#d64045';return'<div class="result-bar-item"><div class="bar-label"><span>'+p.e+' '+p.n+'</span><span>'+sc[p.k]+'/10</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:'+c+'" data-w="'+w+'%"></div></div></div>'}).join('');
-    document.getElementById('stepResult').innerHTML='<div class="result-card"><p style="font-size:.82rem;opacity:.7;margin-bottom:2px">Resultado da Avaliação</p><div class="score-ring"><svg width="120" height="120"><circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="7"/><circle cx="60" cy="60" r="50" fill="none" stroke="'+cor+'" stroke-width="7" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" id="scoreArc"/></svg><span class="score-number" id="scoreNum">0%</span></div><p style="font-size:1.1rem;font-weight:700;margin-bottom:2px">'+niv+'</p><p style="font-size:.78rem;opacity:.7">Índice de Saúde Global</p><div class="pillar-summary">'+ph+'</div><div class="result-bars">'+bh+'</div></div><button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="material-icons-round">send</span> Enviar para o '+CONFIG.doctorName+'</button><p class="text-small">Abre seu WhatsApp com os dados completos.</p><button class="btn btn-outline" onclick="resetMEV()"><span class="material-icons-round">refresh</span> Nova Avaliação</button>';
+    document.getElementById('stepResult').innerHTML='<div class="result-card"><p style="font-size:.82rem;opacity:.7;margin-bottom:2px">Resultado da Avaliação</p><div class="score-ring"><svg width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="55" cy="55" r="46" fill="none" stroke="'+cor+'" stroke-width="6" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" id="scoreArc"/></svg><span class="score-number">'+pct+'%</span></div><p style="font-size:1.1rem;font-weight:700;margin-bottom:2px">'+niv+'</p><p style="font-size:.78rem;opacity:.7">Índice de Saúde Global</p><div class="pillar-summary">'+ph+'</div><div class="result-bars">'+bh+'</div></div><button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="material-icons-round">send</span> Enviar para o '+CONFIG.doctorName+'</button><p class="text-small">Abre seu WhatsApp com os dados completos.</p><button class="btn btn-outline" onclick="resetMEV()"><span class="material-icons-round">refresh</span> Nova Avaliação</button>';
     document.getElementById('step'+currentStep).style.display='none';document.getElementById('stepResult').style.display='block';currentStep='result';document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));document.getElementById('stepCounter').innerHTML='<strong>✅ Completo</strong>';
-    // Animations
-    setTimeout(()=>{
-        const a=document.getElementById('scoreArc');if(a){a.style.transition='stroke-dashoffset 1.5s cubic-bezier(.22,1,.36,1)';a.style.strokeDashoffset=off}
-        animateCount(document.getElementById('scoreNum'),pct);
-        document.querySelectorAll('.bar-fill').forEach((b,i)=>{setTimeout(()=>b.style.width=b.dataset.w,i*150)});
-        if(pct>=50)fireConfetti();
-    },300);
+    setTimeout(()=>{const a=document.getElementById('scoreArc');if(a){a.style.transition='stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)';a.style.strokeDashoffset=off}document.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w)},200);
     window.scrollTo({top:0,behavior:'smooth'})
 }
 
-// ===== WHATSAPP =====
 function enviarWhatsApp(){
     document.getElementById('sendingOverlay').classList.add('show');
     setTimeout(()=>{document.getElementById('sendingOverlay').classList.remove('show');
