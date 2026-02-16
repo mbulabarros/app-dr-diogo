@@ -5,1600 +5,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Diogo Kroetz | Pediatria Integrativa & Medicina do Estilo de Vida</title>
     <meta name="description" content="Dr. Diogo Kroetz - Pediatria Integrativa, Medicina do Estilo de Vida e Puericultura. Instituto Merak, Joinville-SC.">
-    
+    <meta name="theme-color" content="#1b3a2d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
-
     <style>
-        /* ============================================
-           DR. DIOGO KROETZ - WEBAPP v2.0
-           Desenvolvido por Dr. Mbula Barros
-           Arquitetura: SPA Single-File | GitHub Pages
-           ============================================ */
-
-        :root {
-            /* Paleta Agrofloresta — Natureza & Abundância */
-            --moss:       #1b3a2d;
-            --fern:       #2d6a4f;
-            --leaf:       #52b788;
-            --sage:       #95d5b2;
-            --cream:      #faf8f4;
-            --sand:       #f0ece4;
-            --bark:       #6b4f3a;
-            --terracotta: #c96442;
-            --fruit-red:  #d64045;
-            --honey:      #e9a23b;
-            --sky:        #6ea8d7;
-            --text:       #2c2c2c;
-            --text-soft:  #6b6b6b;
-            --white:      #ffffff;
-            --glass:      rgba(255,255,255,0.88);
-            --glass-blur: blur(16px);
-
-            /* Shadows */
-            --shadow-sm:  0 1px 3px rgba(0,0,0,0.06);
-            --shadow-md:  0 4px 20px rgba(0,0,0,0.08);
-            --shadow-lg:  0 12px 40px rgba(0,0,0,0.12);
-            --shadow-glow: 0 0 40px rgba(82,183,136,0.15);
-
-            /* Radius */
-            --radius-sm: 12px;
-            --radius-md: 18px;
-            --radius-lg: 24px;
-            --radius-xl: 32px;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        *::-webkit-scrollbar { width: 0; }
-
-        body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--cream);
-            color: var(--text);
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        /* ---- APP SHELL ---- */
-        .app {
-            max-width: 480px;
-            margin: 0 auto;
-            min-height: 100vh;
-            position: relative;
-            background: var(--cream);
-            padding-bottom: 90px;
-        }
-
-        /* Fundo decorativo — Padrão Botânico Sutil */
-        .app::before {
-            content: '';
-            position: fixed;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(82,183,136,0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(201,100,66,0.04) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(110,168,215,0.04) 0%, transparent 50%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* ---- TELAS SPA ---- */
-        .screen {
-            position: relative;
-            z-index: 1;
-            padding: 20px 18px;
-            display: none;
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-        .screen.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ---- HEADER / HERO ---- */
-        .hero {
-            text-align: center;
-            padding: 40px 20px 25px;
-            position: relative;
-        }
-
-        .hero::after {
-            content: '🌿';
-            position: absolute;
-            top: 12px; right: 25px;
-            font-size: 2rem;
-            opacity: 0.15;
-            animation: sway 4s ease-in-out infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .profile-ring {
-            width: 130px; height: 130px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--leaf), var(--fern), var(--terracotta));
-            display: inline-block;
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-        }
-
-        .profile-img {
-            width: 100%; height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--white);
-        }
-
-        .hero h1 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.65rem;
-            color: var(--moss);
-            margin: 14px 0 2px;
-            letter-spacing: -0.02em;
-        }
-
-        .hero .tagline {
-            font-size: 0.92rem;
-            color: var(--fern);
-            font-weight: 600;
-        }
-
-        .hero .institution {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 10px;
-            padding: 5px 14px;
-            background: var(--sand);
-            border-radius: 20px;
-            font-size: 0.72rem;
-            color: var(--bark);
-            font-weight: 700;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-        }
-
-        /* ---- CARDS DE MENU ---- */
-        .menu-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 5px;
-        }
-
-        .card {
-            background: var(--glass);
-            backdrop-filter: var(--glass-blur);
-            border-radius: var(--radius-lg);
-            padding: 18px 16px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(255,255,255,0.6);
-            box-shadow: var(--shadow-sm);
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .card:active { transform: scale(0.97); }
-        .card:hover { box-shadow: var(--shadow-md); }
-
-        .card-icon {
-            width: 50px; height: 50px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            flex-shrink: 0;
-        }
-
-        .card-icon.green  { background: rgba(82,183,136,0.12); color: var(--fern); }
-        .card-icon.orange { background: rgba(201,100,66,0.10); color: var(--terracotta); }
-        .card-icon.blue   { background: rgba(110,168,215,0.12); color: var(--sky); }
-        .card-icon.honey  { background: rgba(233,162,59,0.12); color: var(--honey); }
-
-        .card h3 { font-size: 1rem; font-weight: 700; margin: 0; color: var(--moss); }
-        .card p  { font-size: 0.82rem; color: var(--text-soft); margin: 3px 0 0; line-height: 1.35; }
-
-        /* Card destaque — MEV */
-        .card-featured {
-            background: linear-gradient(135deg, var(--fern) 0%, var(--moss) 100%);
-            border: none;
-            box-shadow: var(--shadow-md), var(--shadow-glow);
-        }
-        .card-featured h3 { color: var(--white); }
-        .card-featured p  { color: rgba(255,255,255,0.8); }
-        .card-featured .card-icon { background: rgba(255,255,255,0.15); color: var(--white); }
-        .card-featured .badge {
-            position: absolute;
-            top: -8px; right: 14px;
-            background: var(--honey);
-            color: var(--moss);
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 3px 10px;
-            border-radius: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .card-featured { position: relative; }
-
-        /* ---- BOTÕES DE AÇÃO ---- */
-        .btn {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.15s, box-shadow 0.15s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .btn:active { transform: scale(0.97); }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            box-shadow: 0 4px 16px rgba(37,211,102,0.3);
-            margin-top: 20px;
-        }
-
-        .btn-google {
-            background: var(--white);
-            color: var(--text);
-            border: 1.5px solid #e0e0e0;
-            box-shadow: var(--shadow-sm);
-            margin-top: 12px;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--fern);
-            border: 2px solid var(--leaf);
-            margin-top: 12px;
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, var(--fern), var(--moss));
-            color: white;
-            box-shadow: var(--shadow-md), var(--shadow-glow);
-            margin-top: 20px;
-            font-size: 1rem;
-            padding: 17px;
-        }
-
-        /* ---- VOLTAR ---- */
-        .btn-back {
-            background: none; border: none;
-            font-family: inherit;
-            font-weight: 700;
-            color: var(--moss);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.92rem;
-            margin-bottom: 16px;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* ---- FORMULÁRIO MEV ---- */
-        .section-title {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.35rem;
-            color: var(--moss);
-            margin-bottom: 4px;
-        }
-
-        .section-subtitle {
-            font-size: 0.88rem;
-            color: var(--text-soft);
-            margin-bottom: 20px;
-            line-height: 1.45;
-        }
-
-        .form-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 18px;
-            margin-bottom: 14px;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .form-card-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--sand);
-        }
-
-        .form-card-header .material-icons-round {
-            font-size: 22px;
-            color: var(--fern);
-        }
-
-        .form-card-header h2 {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--moss);
-        }
-
-        .field { margin-bottom: 16px; }
-        .field:last-child { margin-bottom: 0; }
-
-        .field label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 7px;
-        }
-
-        .field label .hint {
-            font-weight: 400;
-            color: var(--text-soft);
-            font-size: 0.78rem;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1.5px solid #e8e5e0;
-            border-radius: var(--radius-sm);
-            background: var(--cream);
-            font-family: inherit;
-            font-size: 16px; /* Previne zoom iOS */
-            color: var(--text);
-            transition: border-color 0.2s, box-shadow 0.2s;
-            outline: none;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--leaf);
-            box-shadow: 0 0 0 3px rgba(82,183,136,0.12);
-        }
-
-        textarea { resize: vertical; min-height: 80px; }
-
-        /* Slider Custom */
-        .slider-container { position: relative; }
-
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: linear-gradient(to right, var(--terracotta), var(--honey), var(--leaf));
-            outline: none;
-            margin: 12px 0 6px;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            background: var(--white);
-            border: 3px solid var(--fern);
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.15s;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:active {
-            transform: scale(1.2);
-        }
-
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: var(--text-soft);
-        }
-
-        .slider-value {
-            text-align: center;
-            font-weight: 800;
-            font-size: 1.4rem;
-            color: var(--fern);
-            margin-top: 2px;
-        }
-
-        /* Progress Steps */
-        .progress-bar {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 24px;
-        }
-
-        .progress-step {
-            flex: 1;
-            height: 4px;
-            border-radius: 2px;
-            background: #e0e0e0;
-            transition: background 0.4s ease;
-        }
-        .progress-step.done { background: var(--leaf); }
-        .progress-step.active { background: var(--honey); }
-
-        /* ---- TRATAMENTOS ---- */
-        .treatment-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 18px;
-            margin-bottom: 12px;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-            border-left: 4px solid var(--leaf);
-        }
-
-        .treatment-card .material-icons-round {
-            color: var(--fern);
-            font-size: 28px;
-            margin-top: 2px;
-        }
-
-        .treatment-card h3 {
-            font-size: 0.95rem;
-            margin: 0 0 4px;
-            color: var(--moss);
-        }
-
-        .treatment-card p {
-            font-size: 0.83rem;
-            color: var(--text-soft);
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        /* ---- ARTIGOS ---- */
-        .article-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 18px;
-            margin-bottom: 12px;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .article-card:active { transform: scale(0.98); }
-
-        .article-tag {
-            display: inline-block;
-            background: rgba(201,100,66,0.08);
-            color: var(--terracotta);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.68rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-card h3 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.05rem;
-            margin: 8px 0 5px;
-            color: var(--moss);
-        }
-
-        .article-card p {
-            font-size: 0.84rem;
-            color: var(--text-soft);
-            line-height: 1.4;
-        }
-
-        /* ---- CONTATO ---- */
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 15px;
-            background: var(--white);
-            border-radius: var(--radius-md);
-            margin-bottom: 10px;
-            box-shadow: var(--shadow-sm);
-            cursor: pointer;
-            transition: transform 0.15s;
-            text-decoration: none;
-            color: inherit;
-        }
-        .contact-item:active { transform: scale(0.97); }
-
-        .contact-item .material-icons-round {
-            font-size: 24px;
-            color: var(--fern);
-        }
-
-        .contact-item span.label {
-            font-weight: 600;
-            font-size: 0.92rem;
-        }
-
-        .contact-item span.detail {
-            font-size: 0.8rem;
-            color: var(--text-soft);
-        }
-
-        /* ---- RESULTADO MEV ---- */
-        .result-card {
-            background: linear-gradient(135deg, var(--fern), var(--moss));
-            color: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            text-align: center;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .score-circle {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 12px 0 8px;
-        }
-
-        .score-number {
-            font-family: 'DM Serif Display', serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-        }
-
-        .score-label { font-size: 0.82rem; opacity: 0.8; }
-
-        .result-bars { margin-top: 20px; text-align: left; }
-
-        .result-bar-item {
-            margin-bottom: 12px;
-        }
-
-        .result-bar-item .bar-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.82rem;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-
-        .bar-track {
-            height: 8px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: var(--sage);
-            transition: width 0.8s ease;
-        }
-
-        /* ---- BOTTOM NAV ---- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            z-index: 100;
-            background: var(--white);
-            padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
-            display: flex;
-            justify-content: space-around;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
-            border-top-left-radius: var(--radius-lg);
-            border-top-right-radius: var(--radius-lg);
-        }
-
-        .nav-item {
-            text-align: center;
-            color: #b8b8b8;
-            text-decoration: none;
-            font-size: 0.65rem;
-            font-weight: 600;
-            flex: 1;
-            transition: color 0.25s;
-            -webkit-tap-highlight-color: transparent;
-            cursor: pointer;
-        }
-
-        .nav-item.active { color: var(--fern); }
-
-        .nav-item .material-icons-round {
-            display: block;
-            font-size: 24px;
-            margin-bottom: 2px;
-        }
-
-        /* ---- FOOTER ---- */
-        .footer-info {
-            text-align: center;
-            font-size: 0.7rem;
-            color: var(--text-soft);
-            opacity: 0.6;
-            margin-top: 30px;
-            padding: 0 20px;
-            line-height: 1.5;
-        }
-
-        /* ---- TOAST ---- */
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: var(--moss);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 200;
-            pointer-events: none;
-        }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* ---- UTILITÁRIOS ---- */
-        .mt-16 { margin-top: 16px; }
-        .mb-8 { margin-bottom: 8px; }
-        .text-center { text-align: center; }
-        .text-small { font-size: 0.78rem; color: var(--text-soft); text-align: center; margin-top: 8px; }
-
-        /* ---- ANIMAÇÕES ---- */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-in {
-            animation: fadeUp 0.45s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.08s; opacity: 0; }
-        .delay-2 { animation-delay: 0.16s; opacity: 0; }
-        .delay-3 { animation-delay: 0.24s; opacity: 0; }
-        .delay-4 { animation-delay: 0.32s; opacity: 0; }
-        .delay-5 { animation-delay: 0.40s; opacity: 0; }
-
-        /* ---- RESPONSIVIDADE ---- */
-        @media (max-width: 360px) {
-            .hero h1 { font-size: 1.4rem; }
-            .card { padding: 14px 12px; }
-        }
-
-        @media (min-width: 481px) {
-            .app {
-                border-left: 1px solid #eee;
-                border-right: 1px solid #eee;
-                box-shadow: 0 0 60px rgba(0,0,0,0.06);
-            }
-        }
+        :root{--moss:#1b3a2d;--fern:#2d6a4f;--leaf:#52b788;--sage:#95d5b2;--cream:#faf8f4;--sand:#f0ece4;--bark:#6b4f3a;--terracotta:#c96442;--honey:#e9a23b;--sky:#6ea8d7;--text:#2c2c2c;--text-soft:#6b6b6b;--white:#fff;--glass:rgba(255,255,255,0.92);--shadow-sm:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 20px rgba(0,0,0,0.07);--shadow-lg:0 12px 40px rgba(0,0,0,0.10);--shadow-glow:0 0 50px rgba(82,183,136,0.12);--r-sm:12px;--r-md:18px;--r-lg:24px}
+        *{box-sizing:border-box;margin:0;padding:0}*::-webkit-scrollbar{width:0}
+        body{font-family:'DM Sans',-apple-system,sans-serif;background:var(--moss);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+        .splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,var(--moss),#142e22 50%,var(--fern));display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,transform .6s}
+        .splash.hide{opacity:0;transform:scale(1.05);pointer-events:none}
+        .splash-logo{width:90px;height:90px;border-radius:50%;border:3px solid rgba(255,255,255,.25);object-fit:cover;animation:sp 1.8s ease-in-out infinite;box-shadow:0 0 60px rgba(82,183,136,.3)}
+        .splash-name{font-family:'Playfair Display',serif;color:#fff;font-size:1.5rem;margin-top:18px;opacity:0;animation:sf .8s .3s ease forwards}
+        .splash-sub{color:var(--sage);font-size:.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-top:6px;opacity:0;animation:sf .8s .6s ease forwards}
+        .splash-loader{width:40px;height:3px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:28px;overflow:hidden}
+        .splash-loader::after{content:'';display:block;width:60%;height:100%;background:var(--leaf);border-radius:2px;animation:sl 1.2s ease-in-out infinite}
+        @keyframes sp{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+        @keyframes sf{to{opacity:1}}
+        @keyframes sl{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+
+        .leaf-particle{position:fixed;z-index:0;pointer-events:none;opacity:0;animation:lf linear infinite}
+        @keyframes lf{0%{opacity:0;transform:translateY(-20px) rotate(0)}10%{opacity:.3}90%{opacity:.15}100%{opacity:0;transform:translateY(100vh) rotate(360deg)}}
+
+        .app{max-width:480px;margin:0 auto;min-height:100vh;position:relative;background:var(--cream);padding-bottom:90px;box-shadow:0 0 80px rgba(0,0,0,.25)}
+        .app::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 15% 50%,rgba(82,183,136,.05),transparent 50%),radial-gradient(ellipse at 85% 15%,rgba(201,100,66,.03),transparent 50%);z-index:0;pointer-events:none}
+
+        .screen{position:relative;z-index:1;padding:20px 18px;display:none}
+        .screen.active{display:block;animation:si .4s cubic-bezier(.22,1,.36,1) forwards}
+        @keyframes si{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+        .hero{text-align:center;padding:35px 20px 20px;position:relative}
+        .hero::before{content:'';position:absolute;top:20px;left:50%;transform:translateX(-50%);width:170px;height:170px;border-radius:50%;border:1px dashed rgba(82,183,136,.12);animation:rs 30s linear infinite}
+        @keyframes rs{to{transform:translateX(-50%) rotate(360deg)}}
+        .profile-ring{width:120px;height:120px;border-radius:50%;padding:3px;background:conic-gradient(from 0deg,var(--leaf),var(--fern),var(--terracotta),var(--honey),var(--leaf));display:inline-block;box-shadow:var(--shadow-lg),var(--shadow-glow);animation:hi .7s cubic-bezier(.22,1,.36,1) forwards;position:relative;z-index:1}
+        .profile-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--white)}
+        .hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--moss);margin:14px 0 2px;animation:hi .7s .1s cubic-bezier(.22,1,.36,1) both}
+        .hero .tagline{font-size:.88rem;color:var(--fern);font-weight:600;animation:hi .7s .18s cubic-bezier(.22,1,.36,1) both}
+        .hero .crm{font-size:.7rem;color:var(--text-soft);margin-top:4px;opacity:.6;animation:hi .7s .22s cubic-bezier(.22,1,.36,1) both}
+        .hero .institution{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:6px 16px;background:var(--sand);border-radius:20px;font-size:.7rem;color:var(--bark);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;animation:hi .7s .26s cubic-bezier(.22,1,.36,1) both}
+        @keyframes hi{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+        .menu-grid{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+        .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--r-lg);padding:16px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent}
+        .card:active{transform:scale(.97)}
+        .card-icon{width:46px;height:46px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+        .card-icon.green{background:rgba(82,183,136,.10);color:var(--fern)}.card-icon.orange{background:rgba(201,100,66,.08);color:var(--terracotta)}.card-icon.blue{background:rgba(110,168,215,.10);color:var(--sky)}.card-icon.honey{background:rgba(233,162,59,.10);color:var(--honey)}
+        .card h3{font-size:.95rem;font-weight:700;margin:0;color:var(--moss)}.card p{font-size:.8rem;color:var(--text-soft);margin:2px 0 0;line-height:1.35}
+        .card-featured{background:linear-gradient(135deg,var(--fern),var(--moss));border:none;box-shadow:var(--shadow-md),var(--shadow-glow);position:relative;overflow:hidden}
+        .card-featured h3{color:var(--white)}.card-featured p{color:rgba(255,255,255,.75)}.card-featured .card-icon{background:rgba(255,255,255,.12);color:var(--white)}
+        .card-featured .badge{position:absolute;top:-6px;right:14px;background:var(--honey);color:var(--moss);font-size:.6rem;font-weight:800;padding:3px 10px;border-radius:10px;text-transform:uppercase;box-shadow:0 2px 8px rgba(233,162,59,.3)}
+        .menu-grid .card:nth-child(1){animation:hi .5s .2s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(2){animation:hi .5s .28s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(3){animation:hi .5s .36s cubic-bezier(.22,1,.36,1) both}.menu-grid .card:nth-child(4){animation:hi .5s .44s cubic-bezier(.22,1,.36,1) both}
+
+        .btn{width:100%;padding:15px 20px;border:none;border-radius:50px;font-family:inherit;font-size:.93rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .15s;-webkit-tap-highlight-color:transparent}
+        .btn:active{transform:scale(.97)}
+        .btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.25);margin-top:18px}
+        .btn-google{background:var(--white);color:var(--text);border:1.5px solid #e0e0e0;box-shadow:var(--shadow-sm);margin-top:12px}
+        .btn-outline{background:transparent;color:var(--fern);border:2px solid var(--leaf);margin-top:12px}
+        .btn-submit{background:linear-gradient(135deg,var(--fern),var(--moss));color:#fff;box-shadow:var(--shadow-md),var(--shadow-glow);margin-top:18px;font-size:.95rem;padding:16px}
+        .btn-back{background:none;border:none;font-family:inherit;font-weight:700;color:var(--moss);cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-size:.9rem;margin-bottom:14px;padding:0}
+
+        .section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--moss);margin-bottom:4px}
+        .section-subtitle{font-size:.85rem;color:var(--text-soft);margin-bottom:18px;line-height:1.45}
+        .form-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+        .form-card-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--sand)}
+        .form-card-header .material-icons-round{font-size:20px;color:var(--fern)}.form-card-header h2{font-size:.9rem;font-weight:700;color:var(--moss)}
+        .field{margin-bottom:14px}.field:last-child{margin-bottom:0}
+        .field label{display:block;font-size:.83rem;font-weight:600;color:var(--text);margin-bottom:6px}
+        .field label .hint{font-weight:400;color:var(--text-soft);font-size:.76rem}
+        input[type="text"],input[type="tel"],select,textarea{width:100%;padding:12px 13px;border:1.5px solid #e8e5e0;border-radius:var(--r-sm);background:var(--cream);font-family:inherit;font-size:16px;color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none}
+        input:focus,select:focus,textarea:focus{border-color:var(--leaf);box-shadow:0 0 0 3px rgba(82,183,136,.10)}
+        textarea{resize:vertical;min-height:80px}
+        input[type="range"]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;outline:none;margin:10px 0 4px;background:#e0e0e0}
+        input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--white);border:3px solid var(--fern);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.12);transition:transform .15s}
+        input[type="range"]::-webkit-slider-thumb:active{transform:scale(1.2)}
+        .slider-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-soft)}
+        .slider-value{text-align:center;font-weight:800;font-size:1.5rem;margin-top:2px;transition:color .3s}
+        .slider-value.low{color:var(--terracotta)}.slider-value.mid{color:var(--honey)}.slider-value.high{color:var(--fern)}
+
+        .progress-bar{display:flex;gap:5px;margin-bottom:20px}
+        .progress-step{flex:1;height:4px;border-radius:2px;background:#e4e4e4;transition:background .4s,box-shadow .4s}
+        .progress-step.done{background:var(--leaf)}.progress-step.active{background:var(--honey);box-shadow:0 0 8px rgba(233,162,59,.3)}
+        .step-counter{text-align:center;font-size:.72rem;color:var(--text-soft);font-weight:600;margin-bottom:16px}.step-counter strong{color:var(--fern)}
+
+        .treatment-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);display:flex;gap:13px;align-items:flex-start;border-left:4px solid var(--leaf)}
+        .treatment-card .material-icons-round{color:var(--fern);font-size:26px;margin-top:1px}
+        .treatment-card h3{font-size:.92rem;margin:0 0 3px;color:var(--moss)}.treatment-card p{font-size:.8rem;color:var(--text-soft);line-height:1.4;margin:0}
+
+        .article-card{background:var(--white);border-radius:var(--r-md);padding:16px;margin-bottom:10px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;position:relative;overflow:hidden}
+        .article-card:active{transform:scale(.98)}
+        .article-card::after{content:'→';position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--leaf);font-size:1.2rem;opacity:.4}
+        .article-tag{display:inline-block;background:rgba(201,100,66,.07);color:var(--terracotta);padding:3px 10px;border-radius:20px;font-size:.65rem;font-weight:800;text-transform:uppercase}
+        .article-card h3{font-family:'Playfair Display',serif;font-size:1rem;margin:7px 0 4px;color:var(--moss);padding-right:30px}
+        .article-card p{font-size:.82rem;color:var(--text-soft);line-height:1.4;padding-right:20px}
+
+        .contact-item{display:flex;align-items:center;gap:13px;padding:14px;background:var(--white);border-radius:var(--r-md);margin-bottom:8px;box-shadow:var(--shadow-sm);cursor:pointer;transition:transform .15s;text-decoration:none;color:inherit}
+        .contact-item:active{transform:scale(.97)}.contact-item .material-icons-round{font-size:22px}
+        .contact-item .label{font-weight:600;font-size:.9rem}.contact-item .detail{font-size:.78rem;color:var(--text-soft)}
+
+        .result-card{background:linear-gradient(150deg,var(--fern),var(--moss) 70%);color:var(--white);border-radius:var(--r-lg);padding:28px 22px;text-align:center;margin-bottom:16px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+        .score-ring{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.08);display:inline-flex;align-items:center;justify-content:center;margin:10px 0 8px;position:relative}
+        .score-ring svg{position:absolute;top:0;left:0;transform:rotate(-90deg)}
+        .score-number{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;position:relative;z-index:1}
+        .pillar-summary{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0 0;position:relative;z-index:1}
+        .pillar-item{text-align:center;padding:8px 4px;background:rgba(255,255,255,.08);border-radius:var(--r-sm)}
+        .pillar-item .emoji{font-size:1.3rem}.pillar-item .val{font-size:.75rem;font-weight:700;margin-top:2px}.pillar-item .pname{font-size:.55rem;opacity:.6;margin-top:1px}
+        .result-bars{margin-top:20px;text-align:left;position:relative;z-index:1}
+        .result-bar-item{margin-bottom:10px}
+        .result-bar-item .bar-label{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:4px;font-weight:600}
+        .bar-track{height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+        .bar-fill{height:100%;border-radius:3px;transition:width 1s cubic-bezier(.22,1,.36,1)}
+
+        .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:100;background:var(--white);padding:8px 0 calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:space-around;box-shadow:0 -4px 24px rgba(0,0,0,.06);border-top-left-radius:var(--r-lg);border-top-right-radius:var(--r-lg)}
+        .nav-item{text-align:center;color:#c0c0c0;text-decoration:none;font-size:.6rem;font-weight:600;flex:1;transition:color .2s;-webkit-tap-highlight-color:transparent;cursor:pointer;padding:4px 0}
+        .nav-item.active{color:var(--fern)}
+        .nav-item .material-icons-round{display:block;font-size:22px;margin-bottom:1px}
+        .nav-item.active::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--fern);margin:2px auto 0}
+        .footer-info{text-align:center;font-size:.68rem;color:var(--text-soft);opacity:.5;margin-top:25px;padding:0 20px;line-height:1.5}
+        .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--moss);color:var(--white);padding:12px 24px;border-radius:50px;font-size:.82rem;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .3s,transform .3s;z-index:200;pointer-events:none}
+        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        .sending-overlay{position:fixed;inset:0;z-index:300;background:rgba(27,58,45,.85);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+        .sending-overlay.show{opacity:1;pointer-events:auto}
+        .sending-overlay .ck{width:60px;height:60px;border-radius:50%;background:var(--leaf);display:flex;align-items:center;justify-content:center;animation:cb .5s cubic-bezier(.22,1,.36,1)}
+        .sending-overlay .ck .material-icons-round{color:#fff;font-size:32px}
+        .sending-overlay p{color:#fff;margin-top:14px;font-weight:600}
+        @keyframes cb{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+        .mt-16{margin-top:16px}.text-small{font-size:.76rem;color:var(--text-soft);text-align:center;margin-top:6px}
+        @media(min-width:481px){.app{border-left:1px solid #eee;border-right:1px solid #eee}}
     </style>
 </head>
 <body>
-
+<div class="splash" id="splash"><img src="perfil.jpg" alt="" class="splash-logo"><div class="splash-name">Dr. Diogo Kroetz</div><div class="splash-sub">Pediatria Integrativa</div><div class="splash-loader"></div></div>
+<div class="sending-overlay" id="sendingOverlay"><div class="ck"><span class="material-icons-round">check</span></div><p>Abrindo WhatsApp...</p></div>
 <div class="app" id="app">
 
-    <div id="home" class="screen active">
-        <div class="hero">
-            <div class="profile-ring animate-in">
-                <img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img">
-            </div>
-            <h1 class="animate-in delay-1">Dr. Diogo Kroetz</h1>
-            <p class="tagline animate-in delay-2">Pediatria Integrativa & Medicina do Estilo de Vida</p>
-            <div class="institution animate-in delay-3">
-                <span class="material-icons-round" style="font-size:14px;">location_on</span>
-                Instituto Merak
-            </div>
-        </div>
+<div id="home" class="screen active">
+    <div class="hero">
+        <div class="profile-ring"><img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img"></div>
+        <h1>Dr. Diogo Kroetz</h1>
+        <p class="tagline">Pediatria Integrativa & Medicina do Estilo de Vida</p>
+        <div class="crm">CRM-SC 12260 · RQE 12417 · RQE 12418</div>
+        <div class="institution"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</div>
+    </div>
+    <div class="menu-grid">
+        <div class="card card-featured" onclick="navTo('mev')"><span class="badge">Novo</span><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde MEV</h3><p>Raio-X do estilo de vida: sono, nutrição, emoções e mais.</p></div></div>
+        <div class="card" onclick="navTo('treatments')"><div class="card-icon orange"><span class="material-icons-round">medical_services</span></div><div><h3>Nossa Abordagem</h3><p>Medicina Integrativa focada na causa raiz.</p></div></div>
+        <div class="card" onclick="navTo('contact')"><div class="card-icon blue"><span class="material-icons-round">calendar_today</span></div><div><h3>Agendar Consulta</h3><p>Presencial ou Telemedicina.</p></div></div>
+        <div class="card" onclick="navTo('articles')"><div class="card-icon honey"><span class="material-icons-round">auto_stories</span></div><div><h3>Conteúdos & Artigos</h3><p>Conhecimento para famílias conscientes.</p></div></div>
+    </div>
+    <button class="btn btn-google" onclick="window.open(CONFIG.googleReviews,'_blank')" style="animation:hi .5s .52s cubic-bezier(.22,1,.36,1) both"><span class="material-icons-round" style="color:#FBBC04">star</span> Avalie no Google</button>
+    <div class="footer-info">Conteúdo informativo — não substitui consulta médica.<br>© 2025 Dr. Diogo Kroetz · Instituto Merak<br><span style="opacity:.6">Desenvolvido com 🌿 por MbulaApps</span></div>
+</div>
 
-        <div class="menu-grid">
-            <div class="card card-featured animate-in delay-2" onclick="navTo('mev')">
-                <span class="badge">Novo</span>
-                <div class="card-icon green">
-                    <span class="material-icons-round">spa</span>
-                </div>
-                <div>
-                    <h3>Avaliação de Saúde MEV</h3>
-                    <p>Raio-X do estilo de vida: sono, nutrição, emoções e mais.</p>
-                </div>
-            </div>
+<div id="mev" class="screen">
+    <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+    <h1 class="section-title">Raio-X da Saúde 🌿</h1>
+    <p class="section-subtitle">Avaliação baseada nos pilares da <strong>Medicina do Estilo de Vida</strong>. Preencha com calma — seus dados são enviados diretamente ao consultório.</p>
+    <div class="progress-bar" id="progressBar"><div class="progress-step active"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div></div>
+    <div class="step-counter" id="stepCounter">Etapa <strong>1</strong> de 6</div>
 
-            <div class="card animate-in delay-3" onclick="navTo('treatments')">
-                <div class="card-icon orange">
-                    <span class="material-icons-round">medical_services</span>
-                </div>
-                <div>
-                    <h3>Nossa Abordagem</h3>
-                    <p>Medicina Integrativa focada na causa raiz.</p>
-                </div>
-            </div>
-
-            <div class="card animate-in delay-4" onclick="navTo('contact')">
-                <div class="card-icon blue">
-                    <span class="material-icons-round">calendar_today</span>
-                </div>
-                <div>
-                    <h3>Agendar Consulta</h3>
-                    <p>Presencial ou Telemedicina.</p>
-                </div>
-            </div>
-
-            <div class="card animate-in delay-5" onclick="navTo('articles')">
-                <div class="card-icon honey">
-                    <span class="material-icons-round">auto_stories</span>
-                </div>
-                <div>
-                    <h3>Conteúdos & Artigos</h3>
-                    <p>Conhecimento para famílias conscientes.</p>
-                </div>
-            </div>
-        </div>
-
-        <button class="btn btn-google animate-in delay-5" onclick="window.open('https://www.google.com/maps/place/Instituto+Merak', '_blank')">
-            <span class="material-icons-round">star</span>
-            Avalie no Google ⭐
-        </button>
-
-        <div class="footer-info">
-            Conteúdo informativo — não substitui consulta médica.<br>
-            © 2025 Dr. Diogo Kroetz — CRM-SC 12260 | RQE 12417 (Pediatria) | RQE 12418 (Acupuntura)
-        </div>
+    <div class="mev-step" id="step1">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">person</span><h2>Identificação do Paciente</h2></div>
+        <div class="field"><label>Nome completo da criança</label><input type="text" id="mevNome" placeholder="Ex: Maria Clara Silva"></div>
+        <div class="field"><label>Idade</label><input type="text" id="mevIdade" placeholder="Ex: 4 anos e 3 meses"></div>
+        <div class="field"><label>Nome do responsável</label><input type="text" id="mevResponsavel" placeholder="Nome do pai/mãe/responsável"></div>
+        <div class="field"><label>Telefone (WhatsApp)</label><input type="tel" id="mevTelefone" placeholder="(47) 99999-9999"></div></div>
+        <button class="btn btn-submit" onclick="nextStep(2)">Continuar <span class="material-icons-round">arrow_forward</span></button>
     </div>
 
-    <div id="mev" class="screen">
-        <button class="btn-back" onclick="navTo('home')">
-            <span class="material-icons-round">arrow_back</span> Início
-        </button>
-
-        <h1 class="section-title">Raio-X da Saúde 🌿</h1>
-        <p class="section-subtitle">
-            Avaliação baseada nos pilares da <strong>Medicina do Estilo de Vida (MEV)</strong>. 
-            Preencha com calma — seus dados serão enviados diretamente ao consultório.
-        </p>
-
-        <div class="progress-bar" id="progressBar">
-            <div class="progress-step active"></div>
-            <div class="progress-step"></div>
-            <div class="progress-step"></div>
-            <div class="progress-step"></div>
-            <div class="progress-step"></div>
-            <div class="progress-step"></div>
-        </div>
-
-        <div class="mev-step" id="step1">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">person</span>
-                    <h2>Identificação do Paciente</h2>
-                </div>
-                <div class="field">
-                    <label>Nome completo da criança</label>
-                    <input type="text" id="mevNome" placeholder="Ex: Maria Clara Silva">
-                </div>
-                <div class="field">
-                    <label>Idade</label>
-                    <input type="text" id="mevIdade" placeholder="Ex: 4 anos e 3 meses">
-                </div>
-                <div class="field">
-                    <label>Nome do responsável</label>
-                    <input type="text" id="mevResponsavel" placeholder="Nome do pai/mãe/responsável">
-                </div>
-                <div class="field">
-                    <label>Telefone (WhatsApp)</label>
-                    <input type="tel" id="mevTelefone" placeholder="(47) 99999-9999">
-                </div>
-            </div>
-            <button class="btn btn-submit" onclick="nextStep(2)">
-                Continuar <span class="material-icons-round">arrow_forward</span>
-            </button>
-        </div>
-
-        <div class="mev-step" id="step2" style="display:none;">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">bedtime</span>
-                    <h2>Sono & Energia</h2>
-                </div>
-                <div class="field">
-                    <label>Qualidade do Sono <span class="hint">(0 = péssimo, 10 = excelente)</span></label>
-                    <input type="range" id="mevSono" min="0" max="10" value="5" oninput="updateSlider(this, 'sonoVal')">
-                    <div class="slider-value" id="sonoVal">5</div>
-                    <div class="slider-labels"><span>Agitado</span><span>Reparador</span></div>
-                </div>
-                <div class="field">
-                    <label>Horas de sono por noite</label>
-                    <select id="mevHorasSono">
-                        <option value="">Selecione...</option>
-                        <option value="Menos de 8h">😴 Menos de 8 horas</option>
-                        <option value="8-10h">😊 8 a 10 horas</option>
-                        <option value="10-12h">🌟 10 a 12 horas</option>
-                        <option value="Mais de 12h">💤 Mais de 12 horas</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Dificuldade para dormir?</label>
-                    <select id="mevDificSono">
-                        <option value="Não">Não, dorme bem</option>
-                        <option value="Demora a pegar">Demora a pegar no sono</option>
-                        <option value="Acorda à noite">Acorda várias vezes à noite</option>
-                        <option value="Pesadelos">Pesadelos frequentes</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">restaurant</span>
-                    <h2>Alimentação</h2>
-                </div>
-                <div class="field">
-                    <label>Qualidade da alimentação <span class="hint">(0 a 10)</span></label>
-                    <input type="range" id="mevAlimentacao" min="0" max="10" value="5" oninput="updateSlider(this, 'alimentVal')">
-                    <div class="slider-value" id="alimentVal">5</div>
-                    <div class="slider-labels"><span>Ultraprocessados</span><span>Comida de verdade</span></div>
-                </div>
-                <div class="field">
-                    <label>Tipo predominante de dieta</label>
-                    <select id="mevDieta">
-                        <option value="">Selecione...</option>
-                        <option value="Natural/Orgânica">🥦 Comida natural / orgânica</option>
-                        <option value="Equilibrada">🍽️ Equilibrada (caseira com industrializados)</option>
-                        <option value="Muito industrializada">🍟 Predominante industrializada</option>
-                        <option value="Seletiva">⚠️ Seletividade alimentar</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Consome frutas e vegetais?</label>
-                    <select id="mevFrutas">
-                        <option value="Diariamente">🍎 Sim, diariamente</option>
-                        <option value="Às vezes">🤷 Às vezes</option>
-                        <option value="Raramente">😕 Raramente</option>
-                        <option value="Nunca">❌ Nunca / Recusa</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-outline" onclick="prevStep(1)" style="flex:1;">Voltar</button>
-                <button class="btn btn-submit" onclick="nextStep(3)" style="flex:2;">
-                    Continuar <span class="material-icons-round">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="mev-step" id="step3" style="display:none;">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">water_drop</span>
-                    <h2>Intestino, Hidratação & Atividade Física</h2>
-                </div>
-                <div class="field">
-                    <label>Padrão Intestinal <span class="hint">(Escala de Bristol)</span></label>
-                    <select id="mevIntestino">
-                        <option value="">Selecione...</option>
-                        <option value="Tipo 1-2: Constipado">🪨 Tipo 1-2: Fezes endurecidas / bolinhas</option>
-                        <option value="Tipo 3-4: Normal">✅ Tipo 3-4: Formato normal (salsicha)</option>
-                        <option value="Tipo 5-6: Amolecido">🌊 Tipo 5-6: Fezes amolecidas / pastosas</option>
-                        <option value="Tipo 7: Diarreia">⚠️ Tipo 7: Líquido / Diarreia</option>
-                        <option value="Irregular">🔄 Muito irregular (alterna)</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Frequência evacuatória</label>
-                    <select id="mevFreqEvac">
-                        <option value="Diário">✅ Todos os dias</option>
-                        <option value="Dia sim dia não">🔄 Dia sim, dia não</option>
-                        <option value="2-3x/semana">⚠️ 2-3 vezes por semana</option>
-                        <option value="Menos de 2x/semana">🚨 Menos de 2 vezes por semana</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Hidratação</label>
-                    <select id="mevAgua">
-                        <option value="Pouca água">💧 Bebe pouca água</option>
-                        <option value="Adequada">🌊 Quantidade adequada</option>
-                        <option value="Muita água">🚰 Bebe bastante água</option>
-                        <option value="Só suco/refrigerante">🥤 Prefere suco/refrigerante</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">directions_run</span>
-                    <h2>Atividade Física</h2>
-                </div>
-                <div class="field">
-                    <label>Nível de atividade física <span class="hint">(0 a 10)</span></label>
-                    <input type="range" id="mevAtivFisica" min="0" max="10" value="5" oninput="updateSlider(this, 'ativVal')">
-                    <div class="slider-value" id="ativVal">5</div>
-                    <div class="slider-labels"><span>Sedentário</span><span>Muito ativo</span></div>
-                </div>
-                <div class="field">
-                    <label>Pratica esporte ou brincadeiras ativas?</label>
-                    <select id="mevEsporte">
-                        <option value="Sim, regularmente">⚽ Sim, regularmente</option>
-                        <option value="Às vezes">🤸 De vez em quando</option>
-                        <option value="Não, sedentário">📱 Não, fica mais em telas</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-outline" onclick="prevStep(2)" style="flex:1;">Voltar</button>
-                <button class="btn btn-submit" onclick="nextStep(4)" style="flex:2;">
-                    Continuar <span class="material-icons-round">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="mev-step" id="step4" style="display:none;">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">psychology</span>
-                    <h2>Humor & Saúde Mental</h2>
-                </div>
-                <div class="field">
-                    <label>Como está o humor da criança? <span class="hint">(0 a 10)</span></label>
-                    <input type="range" id="mevHumor" min="0" max="10" value="5" oninput="updateSlider(this, 'humorVal')">
-                    <div class="slider-value" id="humorVal">5</div>
-                    <div class="slider-labels"><span>Triste / Irritado</span><span>Alegre / Tranquilo</span></div>
-                </div>
-                <div class="field">
-                    <label>Sinais emocionais percebidos</label>
-                    <select id="mevEmocional">
-                        <option value="Equilibrado">😊 Equilibrado emocionalmente</option>
-                        <option value="Ansioso">😰 Ansiedade / Preocupação excessiva</option>
-                        <option value="Irritável">😤 Irritabilidade / Birras frequentes</option>
-                        <option value="Triste">😢 Tristeza / Apatia</option>
-                        <option value="Medos">😨 Medos excessivos</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Perspectivas e autoestima</label>
-                    <select id="mevPerspectiva">
-                        <option value="Positiva">🌟 Positiva / Confiante</option>
-                        <option value="Normal">🙂 Normal para a idade</option>
-                        <option value="Inseguro">😟 Inseguro / Baixa autoestima</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">groups</span>
-                    <h2>Relacionamentos & Ambiente</h2>
-                </div>
-                <div class="field">
-                    <label>Ambiente familiar</label>
-                    <select id="mevFamilia">
-                        <option value="Harmônico">❤️ Harmônico / Apoio mútuo</option>
-                        <option value="Tenso">⚡ Tenso / Conflituoso</option>
-                        <option value="Luto/Separação">💔 Passando por luto ou separação</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Socialização com outras crianças</label>
-                    <select id="mevSocial">
-                        <option value="Boa">👫 Boa, tem amigos</option>
-                        <option value="Tímida">🙈 Tímida / Retraída</option>
-                        <option value="Dificuldade">⚠️ Dificuldade de interação</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Contato com a natureza <span class="hint">(0 a 10)</span></label>
-                    <input type="range" id="mevNatureza" min="0" max="10" value="5" oninput="updateSlider(this, 'naturezaVal')">
-                    <div class="slider-value" id="naturezaVal">5</div>
-                    <div class="slider-labels"><span>Quase nunca</span><span>Diariamente</span></div>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-outline" onclick="prevStep(3)" style="flex:1;">Voltar</button>
-                <button class="btn btn-submit" onclick="nextStep(5)" style="flex:2;">
-                    Continuar <span class="material-icons-round">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="mev-step" id="step5" style="display:none;">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">devices</span>
-                    <h2>Tempo de Tela</h2>
-                </div>
-                <div class="field">
-                    <label>Tempo médio de tela por dia</label>
-                    <select id="mevTelas">
-                        <option value="">Selecione...</option>
-                        <option value="Menos de 1h">🟢 Menos de 1 hora</option>
-                        <option value="1-2h">🟡 1 a 2 horas</option>
-                        <option value="2-4h">🟠 2 a 4 horas</option>
-                        <option value="Mais de 4h">🔴 Mais de 4 horas</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Usa tela antes de dormir?</label>
-                    <select id="mevTelaNoite">
-                        <option value="Não">🌙 Não</option>
-                        <option value="Às vezes">🤷 Às vezes</option>
-                        <option value="Sempre">📱 Sim, sempre</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">medication</span>
-                    <h2>Medicamentos & Substâncias</h2>
-                </div>
-                <div class="field">
-                    <label>Uso contínuo de medicamentos?</label>
-                    <select id="mevMedicamentos">
-                        <option value="Nenhum">Nenhum medicamento contínuo</option>
-                        <option value="Sim">Sim, usa medicamento(s)</option>
-                    </select>
-                </div>
-                <div class="field" id="fieldMedDetalhe" style="display:none;">
-                    <label>Quais medicamentos?</label>
-                    <input type="text" id="mevMedDetalhe" placeholder="Ex: Vitamina D, Ferro...">
-                </div>
-                <div class="field">
-                    <label>Suplementos em uso?</label>
-                    <input type="text" id="mevSuplementos" placeholder="Ex: Nenhum, Ômega-3, Probiótico...">
-                </div>
-                <div class="field">
-                    <label>Exposição passiva a substâncias? <span class="hint">(fumantes em casa, etc.)</span></label>
-                    <select id="mevSubstancias">
-                        <option value="Não">Não há exposição</option>
-                        <option value="Tabaco">🚬 Fumantes no domicílio</option>
-                        <option value="Outros">⚠️ Outros</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-outline" onclick="prevStep(4)" style="flex:1;">Voltar</button>
-                <button class="btn btn-submit" onclick="nextStep(6)" style="flex:2;">
-                    Continuar <span class="material-icons-round">arrow_forward</span>
-                </button>
-            </div>
-        </div>
-
-        <div class="mev-step" id="step6" style="display:none;">
-            <div class="form-card">
-                <div class="form-card-header">
-                    <span class="material-icons-round">edit_note</span>
-                    <h2>Observações & Preocupações</h2>
-                </div>
-                <div class="field">
-                    <label>Queixa principal ou motivo da consulta</label>
-                    <textarea id="mevQueixa" placeholder="Descreva o que mais preocupa vocês sobre a saúde da criança..."></textarea>
-                </div>
-                <div class="field">
-                    <label>Outras observações relevantes</label>
-                    <textarea id="mevObs" placeholder="Alergias, cirurgias anteriores, histórico familiar importante, ou qualquer informação adicional..."></textarea>
-                </div>
-                <div class="field">
-                    <label>O que você espera do acompanhamento?</label>
-                    <select id="mevExpectativa">
-                        <option value="Prevenção e acompanhamento">🌱 Prevenção e acompanhamento (check-up)</option>
-                        <option value="Tratar queixa específica">🩺 Tratar uma queixa específica</option>
-                        <option value="Segunda opinião">🔍 Segunda opinião médica</option>
-                        <option value="MEV / Mudança de hábitos">🌿 Reestruturar estilo de vida</option>
-                    </select>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-outline" onclick="prevStep(5)" style="flex:1;">Voltar</button>
-                <button class="btn btn-submit" onclick="showResult()" style="flex:2;">
-                    <span class="material-icons-round">check_circle</span> Ver Resultado
-                </button>
-            </div>
-        </div>
-
-        <div class="mev-step" id="stepResult" style="display:none;">
-            <div class="result-card" id="resultCard">
-                </div>
-
-            <button class="btn btn-whatsapp" onclick="enviarWhatsApp()">
-                <span class="material-icons-round">send</span>
-                Enviar para o Dr. Diogo
-            </button>
-            <p class="text-small">Abre seu WhatsApp com os dados da avaliação.</p>
-
-            <button class="btn btn-outline" onclick="resetMEV()">
-                <span class="material-icons-round">refresh</span> Nova Avaliação
-            </button>
-        </div>
+    <div class="mev-step" id="step2" style="display:none">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">bedtime</span><h2>Sono & Energia</h2></div>
+        <div class="field"><label>Qualidade do Sono <span class="hint">(0=péssimo · 10=excelente)</span></label><input type="range" id="mevSono" min="0" max="10" value="5" oninput="updateSlider(this,'sonoVal')"><div class="slider-value mid" id="sonoVal">5</div><div class="slider-labels"><span>😫 Agitado</span><span>Reparador 😴</span></div></div>
+        <div class="field"><label>Horas de sono por noite</label><select id="mevHorasSono"><option value="">Selecione...</option><option value="Menos de 8h">😴 Menos de 8h</option><option value="8-10h">😊 8 a 10h</option><option value="10-12h">🌟 10 a 12h</option><option value="Mais de 12h">💤 Mais de 12h</option></select></div>
+        <div class="field"><label>Dificuldade para dormir?</label><select id="mevDificSono"><option value="Não">Não, dorme bem</option><option value="Demora a pegar">Demora a pegar no sono</option><option value="Acorda à noite">Acorda várias vezes</option><option value="Pesadelos">Pesadelos frequentes</option></select></div></div>
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">restaurant</span><h2>Alimentação</h2></div>
+        <div class="field"><label>Qualidade da alimentação <span class="hint">(0 a 10)</span></label><input type="range" id="mevAlimentacao" min="0" max="10" value="5" oninput="updateSlider(this,'alimentVal')"><div class="slider-value mid" id="alimentVal">5</div><div class="slider-labels"><span>🍟 Ultraprocessados</span><span>Comida de verdade 🥦</span></div></div>
+        <div class="field"><label>Tipo predominante de dieta</label><select id="mevDieta"><option value="">Selecione...</option><option value="Natural/Orgânica">🥦 Natural / orgânica</option><option value="Equilibrada">🍽️ Equilibrada</option><option value="Muito industrializada">🍟 Industrializada</option><option value="Seletiva">⚠️ Seletividade alimentar</option></select></div>
+        <div class="field"><label>Consome frutas e vegetais?</label><select id="mevFrutas"><option value="Diariamente">🍎 Sim, diariamente</option><option value="Às vezes">🤷 Às vezes</option><option value="Raramente">😕 Raramente</option><option value="Nunca">❌ Nunca / Recusa</option></select></div></div>
+        <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(1)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(3)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
-    <div id="treatments" class="screen">
-        <button class="btn-back" onclick="navTo('home')">
-            <span class="material-icons-round">arrow_back</span> Início
-        </button>
-
-        <h1 class="section-title">Nossa Abordagem 🌱</h1>
-        <p class="section-subtitle">Medicina Integrativa com foco na causa raiz — cuidando da criança como um todo.</p>
-
-        <div class="treatment-card">
-            <span class="material-icons-round">local_florist</span>
-            <div>
-                <h3>Puericultura Integrativa</h3>
-                <p>Acompanhamento de crescimento, vacinas, marcos do desenvolvimento e orientação global para cada fase da infância.</p>
-            </div>
-        </div>
-
-        <div class="treatment-card">
-            <span class="material-icons-round">restaurant</span>
-            <div>
-                <h3>Nutrição & Suplementação Inteligente</h3>
-                <p>Correção de carências vitamínicas, orientação alimentar personalizada e introdução alimentar participativa.</p>
-            </div>
-        </div>
-
-        <div class="treatment-card">
-            <span class="material-icons-round">psychology</span>
-            <div>
-                <h3>Saúde Mental & Comportamento</h3>
-                <p>Suporte para sono, ansiedade, questões escolares, TDAH e autorregulação emocional com abordagem integrativa.</p>
-            </div>
-        </div>
-
-        <div class="treatment-card">
-            <span class="material-icons-round">spa</span>
-            <div>
-                <h3>Medicina do Estilo de Vida (MEV)</h3>
-                <p>Ajustes nos 6 pilares da saúde: sono, alimentação, atividade física, gerenciamento de estresse, relações e evitar substâncias nocivas.</p>
-            </div>
-        </div>
-
-        <div class="treatment-card">
-            <span class="material-icons-round">eco</span>
-            <div>
-                <h3>Conexão com a Natureza</h3>
-                <p>A agrofloresta e o contato com ambientes naturais como ferramenta terapêutica e de desenvolvimento saudável.</p>
-            </div>
-        </div>
-
-        <button class="btn btn-whatsapp mt-16" onclick="openWhatsApp()">
-            <span class="material-icons-round">chat</span>
-            Quero saber mais — WhatsApp
-        </button>
+    <div class="mev-step" id="step3" style="display:none">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">water_drop</span><h2>Intestino & Hidratação</h2></div>
+        <div class="field"><label>Padrão Intestinal <span class="hint">(Escala de Bristol)</span></label><select id="mevIntestino"><option value="">Selecione...</option><option value="Tipo 1-2: Constipado">🪨 Tipo 1-2: Endurecidas</option><option value="Tipo 3-4: Normal">✅ Tipo 3-4: Normal</option><option value="Tipo 5-6: Amolecido">🌊 Tipo 5-6: Amolecidas</option><option value="Tipo 7: Diarreia">⚠️ Tipo 7: Diarreia</option><option value="Irregular">🔄 Irregular</option></select></div>
+        <div class="field"><label>Frequência evacuatória</label><select id="mevFreqEvac"><option value="Diário">✅ Todos os dias</option><option value="Dia sim dia não">🔄 Dia sim, dia não</option><option value="2-3x/semana">⚠️ 2-3x/semana</option><option value="Menos de 2x/semana">🚨 Menos de 2x/semana</option></select></div>
+        <div class="field"><label>Hidratação</label><select id="mevAgua"><option value="Pouca água">💧 Pouca água</option><option value="Adequada">🌊 Adequada</option><option value="Muita água">🚰 Bastante água</option><option value="Só suco/refrigerante">🥤 Prefere suco/refri</option></select></div></div>
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">directions_run</span><h2>Atividade Física</h2></div>
+        <div class="field"><label>Nível de atividade <span class="hint">(0 a 10)</span></label><input type="range" id="mevAtivFisica" min="0" max="10" value="5" oninput="updateSlider(this,'ativVal')"><div class="slider-value mid" id="ativVal">5</div><div class="slider-labels"><span>🛋️ Sedentário</span><span>Muito ativo ⚽</span></div></div>
+        <div class="field"><label>Pratica esporte?</label><select id="mevEsporte"><option value="Sim, regularmente">⚽ Sim, regularmente</option><option value="Às vezes">🤸 De vez em quando</option><option value="Não, sedentário">📱 Não, mais em telas</option></select></div></div>
+        <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(2)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(4)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
-    <div id="articles" class="screen">
-        <button class="btn-back" onclick="navTo('home')">
-            <span class="material-icons-round">arrow_back</span> Início
-        </button>
-
-        <h1 class="section-title">Conteúdos 📚</h1>
-        <p class="section-subtitle">Conhecimento para famílias que buscam saúde de verdade.</p>
-
-        <div class="article-card">
-            <span class="article-tag">Sono Infantil</span>
-            <h3>Higiene do Sono: Guia Prático</h3>
-            <p>Como construir uma rotina noturna que prepara o ambiente para uma noite tranquila — sem telas, sem batalhas.</p>
-        </div>
-
-        <div class="article-card">
-            <span class="article-tag">Imunidade</span>
-            <h3>Alimentos da Agrofloresta</h3>
-            <p>O poder dos alimentos naturais e sazonais na construção de uma imunidade forte desde a infância.</p>
-        </div>
-
-        <div class="article-card">
-            <span class="article-tag">MEV</span>
-            <h3>Os 6 Pilares da Medicina do Estilo de Vida</h3>
-            <p>Entenda como sono, nutrição, exercício, emoções, relações e evitar substâncias moldam a saúde da sua família.</p>
-        </div>
-
-        <div class="article-card">
-            <span class="article-tag">Desenvolvimento</span>
-            <h3>Brincar é Coisa Séria</h3>
-            <p>A neurociência por trás do brincar livre e como ele supera qualquer aplicativo educativo.</p>
-        </div>
-
-        <div class="footer-info" style="margin-top:20px;">
-            Novos artigos em breve! Acompanhe nas redes sociais.
-        </div>
+    <div class="mev-step" id="step4" style="display:none">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">psychology</span><h2>Humor & Saúde Mental</h2></div>
+        <div class="field"><label>Humor da criança <span class="hint">(0 a 10)</span></label><input type="range" id="mevHumor" min="0" max="10" value="5" oninput="updateSlider(this,'humorVal')"><div class="slider-value mid" id="humorVal">5</div><div class="slider-labels"><span>😢 Triste/Irritado</span><span>Alegre/Tranquilo 😊</span></div></div>
+        <div class="field"><label>Sinais emocionais</label><select id="mevEmocional"><option value="Equilibrado">😊 Equilibrado</option><option value="Ansioso">😰 Ansiedade</option><option value="Irritável">😤 Irritabilidade</option><option value="Triste">😢 Tristeza/Apatia</option><option value="Medos">😨 Medos excessivos</option></select></div>
+        <div class="field"><label>Autoestima</label><select id="mevPerspectiva"><option value="Positiva">🌟 Positiva/Confiante</option><option value="Normal">🙂 Normal</option><option value="Inseguro">😟 Inseguro</option></select></div></div>
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">groups</span><h2>Relacionamentos & Ambiente</h2></div>
+        <div class="field"><label>Ambiente familiar</label><select id="mevFamilia"><option value="Harmônico">❤️ Harmônico</option><option value="Tenso">⚡ Conflituoso</option><option value="Luto/Separação">💔 Luto ou separação</option></select></div>
+        <div class="field"><label>Socialização</label><select id="mevSocial"><option value="Boa">👫 Boa, tem amigos</option><option value="Tímida">🙈 Tímida</option><option value="Dificuldade">⚠️ Dificuldade</option></select></div>
+        <div class="field"><label>Contato com natureza <span class="hint">(0 a 10)</span></label><input type="range" id="mevNatureza" min="0" max="10" value="5" oninput="updateSlider(this,'naturezaVal')"><div class="slider-value mid" id="naturezaVal">5</div><div class="slider-labels"><span>🏢 Quase nunca</span><span>Diariamente 🌳</span></div></div></div>
+        <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(3)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(5)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
-    <div id="contact" class="screen">
-        <button class="btn-back" onclick="navTo('home')">
-            <span class="material-icons-round">arrow_back</span> Início
-        </button>
-
-        <h1 class="section-title">Contato & Agendamento 📞</h1>
-        <p class="section-subtitle">Estamos no <strong>Instituto Merak</strong>. Escolha a forma mais conveniente para você.</p>
-
-        <a class="contact-item" href="https://wa.me/554799730160?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta%20com%20o%20Dr.%20Diogo." target="_blank">
-            <span class="material-icons-round" style="color:#25D366;">chat</span>
-            <div>
-                <span class="label">WhatsApp — Secretária</span><br>
-                <span class="detail">Agendar consulta ou tirar dúvidas</span>
-            </div>
-        </a>
-
-        <a class="contact-item" href="tel:+554799730160">
-            <span class="material-icons-round" style="color:var(--fern);">call</span>
-            <div>
-                <span class="label">Telefone</span><br>
-                <span class="detail">(47) 9973-0160</span>
-            </div>
-        </a>
-
-        <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville+Av+Santos+Dumont+2400" target="_blank">
-            <span class="material-icons-round" style="color:var(--terracotta);">location_on</span>
-            <div>
-                <span class="label">Instituto Merak</span><br>
-                <span class="detail">Av. Santos Dumont, 2400 — Joinville</span>
-            </div>
-        </a>
-
-        <a class="contact-item" href="https://www.instagram.com/drdiogokroetz" target="_blank">
-            <span class="material-icons-round" style="color:#E1306C;">photo_camera</span>
-            <div>
-                <span class="label">Instagram</span><br>
-                <span class="detail">@drdiogokroetz</span>
-            </div>
-        </a>
-
-        <div class="form-card mt-16">
-            <div class="form-card-header">
-                <span class="material-icons-round">event</span>
-                <h2>Modalidades de Consulta</h2>
-            </div>
-            <div class="field">
-                <label>🏥 <strong>Presencial</strong> — Instituto Merak, Joinville</label>
-            </div>
-            <div class="field">
-                <label>💻 <strong>Telemedicina</strong> — Consulta online por vídeo</label>
-            </div>
-            <div class="field">
-                <label>📋 <strong>Retorno</strong> — Acompanhamento de resultados</label>
-            </div>
-        </div>
-
-        <button class="btn btn-whatsapp" onclick="openWhatsApp()">
-            <span class="material-icons-round">calendar_today</span>
-            Agendar pelo WhatsApp
-        </button>
+    <div class="mev-step" id="step5" style="display:none">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">devices</span><h2>Tempo de Tela</h2></div>
+        <div class="field"><label>Tempo médio de tela/dia</label><select id="mevTelas"><option value="">Selecione...</option><option value="Menos de 1h">🟢 Menos de 1h</option><option value="1-2h">🟡 1 a 2h</option><option value="2-4h">🟠 2 a 4h</option><option value="Mais de 4h">🔴 Mais de 4h</option></select></div>
+        <div class="field"><label>Tela antes de dormir?</label><select id="mevTelaNoite"><option value="Não">🌙 Não</option><option value="Às vezes">🤷 Às vezes</option><option value="Sempre">📱 Sempre</option></select></div></div>
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">medication</span><h2>Medicamentos & Substâncias</h2></div>
+        <div class="field"><label>Uso contínuo de medicamentos?</label><select id="mevMedicamentos" onchange="toggleMed()"><option value="Nenhum">Nenhum</option><option value="Sim">Sim</option></select></div>
+        <div class="field" id="fieldMedDetalhe" style="display:none"><label>Quais?</label><input type="text" id="mevMedDetalhe" placeholder="Ex: Vitamina D, Ferro..."></div>
+        <div class="field"><label>Suplementos em uso?</label><input type="text" id="mevSuplementos" placeholder="Ex: Nenhum, Ômega-3..."></div>
+        <div class="field"><label>Exposição passiva? <span class="hint">(fumantes, etc.)</span></label><select id="mevSubstancias"><option value="Não">Não</option><option value="Tabaco">🚬 Fumantes em casa</option><option value="Outros">⚠️ Outros</option></select></div></div>
+        <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(4)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="nextStep(6)" style="flex:2">Continuar <span class="material-icons-round">arrow_forward</span></button></div>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <div class="mev-step" id="step6" style="display:none">
+        <div class="form-card"><div class="form-card-header"><span class="material-icons-round">edit_note</span><h2>Observações & Preocupações</h2></div>
+        <div class="field"><label>Queixa principal</label><textarea id="mevQueixa" placeholder="O que mais preocupa sobre a saúde da criança..."></textarea></div>
+        <div class="field"><label>Outras observações</label><textarea id="mevObs" placeholder="Alergias, histórico familiar, cirurgias..."></textarea></div>
+        <div class="field"><label>Expectativa do acompanhamento</label><select id="mevExpectativa"><option value="Prevenção">🌱 Prevenção (check-up)</option><option value="Queixa específica">🩺 Queixa específica</option><option value="Segunda opinião">🔍 Segunda opinião</option><option value="MEV">🌿 Reestruturar estilo de vida</option></select></div></div>
+        <div style="display:flex;gap:10px"><button class="btn btn-outline" onclick="prevStep(5)" style="flex:1">Voltar</button><button class="btn btn-submit" onclick="showResult()" style="flex:2"><span class="material-icons-round">check_circle</span> Ver Resultado</button></div>
+    </div>
 
-    <nav class="bottom-nav">
-        <a class="nav-item active" data-screen="home" onclick="navTo('home')">
-            <span class="material-icons-round">home</span>Início
-        </a>
-        <a class="nav-item" data-screen="mev" onclick="navTo('mev')">
-            <span class="material-icons-round">spa</span>MEV
-        </a>
-        <a class="nav-item" data-screen="articles" onclick="navTo('articles')">
-            <span class="material-icons-round">auto_stories</span>Artigos
-        </a>
-        <a class="nav-item" data-screen="contact" onclick="navTo('contact')">
-            <span class="material-icons-round">call</span>Contato
-        </a>
-    </nav>
+    <div class="mev-step" id="stepResult" style="display:none"></div>
+</div>
+
+<div id="treatments" class="screen">
+    <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+    <h1 class="section-title">Nossa Abordagem 🌱</h1>
+    <p class="section-subtitle">Medicina Integrativa com foco na causa raiz.</p>
+    <div class="treatment-card"><span class="material-icons-round">local_florist</span><div><h3>Puericultura Integrativa</h3><p>Crescimento, vacinas, marcos do desenvolvimento e orientação global.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">restaurant</span><div><h3>Nutrição & Suplementação</h3><p>Correção de carências vitamínicas e orientação alimentar personalizada.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">psychology</span><div><h3>Saúde Mental & Comportamento</h3><p>Sono, ansiedade, TDAH e autorregulação emocional integrativa.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">spa</span><div><h3>Medicina do Estilo de Vida</h3><p>6 pilares: sono, alimentação, atividade, estresse, relações, substâncias.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">eco</span><div><h3>Conexão com a Natureza</h3><p>Agrofloresta como ferramenta terapêutica e de desenvolvimento.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">self_improvement</span><div><h3>Acupuntura Pediátrica</h3><p>Técnicas suaves para equilíbrio energético e alívio de sintomas.</p></div></div>
+    <button class="btn btn-whatsapp mt-16" onclick="openWhatsApp()"><span class="material-icons-round">chat</span> Quero saber mais</button>
+</div>
+
+<div id="articles" class="screen">
+    <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+    <h1 class="section-title">Conteúdos 📚</h1>
+    <p class="section-subtitle">Conhecimento para famílias que buscam saúde de verdade.</p>
+    <div class="article-card"><span class="article-tag">Sono</span><h3>Higiene do Sono: Guia Prático</h3><p>Rotina noturna sem telas e sem batalhas.</p></div>
+    <div class="article-card"><span class="article-tag">Imunidade</span><h3>Alimentos da Agrofloresta</h3><p>Alimentos naturais e sazonais na imunidade infantil.</p></div>
+    <div class="article-card"><span class="article-tag">MEV</span><h3>Os 6 Pilares do Estilo de Vida</h3><p>Como os pilares moldam a saúde da família.</p></div>
+    <div class="article-card"><span class="article-tag">Desenvolvimento</span><h3>Brincar é Coisa Séria</h3><p>Neurociência do brincar livre vs. apps educativos.</p></div>
+    <div class="footer-info" style="margin-top:16px">Novos artigos em breve!</div>
+</div>
+
+<div id="contact" class="screen">
+    <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
+    <h1 class="section-title">Contato & Agendamento 📞</h1>
+    <p class="section-subtitle">Estamos no <strong>Instituto Merak</strong>.</p>
+    <a class="contact-item" href="https://wa.me/554799730160?text=Olá!%20Gostaria%20de%20agendar%20consulta%20com%20o%20Dr.%20Diogo." target="_blank"><span class="material-icons-round" style="color:#25D366">chat</span><div><span class="label">WhatsApp — Secretária</span><br><span class="detail">Agendar consulta ou dúvidas</span></div></a>
+    <a class="contact-item" href="tel:+554799730160"><span class="material-icons-round" style="color:var(--fern)">call</span><div><span class="label">Telefone</span><br><span class="detail">(47) 9973-0160</span></div></a>
+    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville+Av+Santos+Dumont+2400" target="_blank"><span class="material-icons-round" style="color:var(--terracotta)">location_on</span><div><span class="label">Instituto Merak</span><br><span class="detail">Av. Santos Dumont, 2400 — Joinville</span></div></a>
+    <a class="contact-item" href="https://www.instagram.com/diogoviniciuskroetz" target="_blank"><span class="material-icons-round" style="color:#E1306C">photo_camera</span><div><span class="label">Instagram</span><br><span class="detail">@diogoviniciuskroetz</span></div></a>
+    <div class="form-card mt-16"><div class="form-card-header"><span class="material-icons-round">event</span><h2>Modalidades</h2></div>
+    <div class="field"><label>🏥 <strong>Presencial</strong> — Instituto Merak</label></div>
+    <div class="field"><label>💻 <strong>Telemedicina</strong> — Consulta por vídeo</label></div>
+    <div class="field"><label>📋 <strong>Retorno</strong> — Acompanhamento</label></div></div>
+    <button class="btn btn-whatsapp" onclick="openWhatsApp()"><span class="material-icons-round">calendar_today</span> Agendar pelo WhatsApp</button>
+</div>
+
+<div class="toast" id="toast"></div>
+<nav class="bottom-nav">
+    <a class="nav-item active" data-screen="home" onclick="navTo('home')"><span class="material-icons-round">home</span>Início</a>
+    <a class="nav-item" data-screen="mev" onclick="navTo('mev')"><span class="material-icons-round">spa</span>MEV</a>
+    <a class="nav-item" data-screen="articles" onclick="navTo('articles')"><span class="material-icons-round">auto_stories</span>Artigos</a>
+    <a class="nav-item" data-screen="contact" onclick="navTo('contact')"><span class="material-icons-round">call</span>Contato</a>
+</nav>
 </div>
 
 <script>
-    /* ==============================================
-       CONFIGURAÇÃO — Altere aqui os dados reais
-    ============================================== */
-    const CONFIG = {
-        // Número do WhatsApp do consultório (com DDI+DDD)
-        whatsappNumber: '554799730160', 
-        // Nome do médico (para mensagens)
-        doctorName: 'Dr. Diogo',
-        // Link Google Reviews
-        googleReviews: 'https://www.google.com/maps/place/Instituto+Merak'
-    };
+const CONFIG={whatsappNumber:'554799730160',doctorName:'Dr. Diogo',googleReviews:'https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville'};
 
-    /* ==============================================
-       NAVEGAÇÃO SPA
-    ============================================== */
-    let currentScreen = 'home';
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('splash').classList.add('hide');setTimeout(()=>document.getElementById('splash').remove(),600)},1800);createLeaves()});
 
-    function navTo(screenId) {
-        // Desativa tela atual
-        const current = document.querySelector('.screen.active');
-        if (current) {
-            current.classList.remove('active');
-            current.style.display = 'none';
-        }
+function createLeaves(){const l=['🍃','🌿','☘️'],c=document.querySelector('.app');for(let i=0;i<5;i++){const e=document.createElement('div');e.className='leaf-particle';e.textContent=l[Math.floor(Math.random()*l.length)];e.style.left=Math.random()*100+'%';e.style.animationDuration=(14+Math.random()*16)+'s';e.style.animationDelay=Math.random()*12+'s';e.style.fontSize=(10+Math.random()*6)+'px';c.appendChild(e)}}
 
-        // Ativa nova tela
-        const target = document.getElementById(screenId);
-        target.style.display = 'block';
-        // Força reflow para animação
-        void target.offsetWidth;
-        target.classList.add('active');
+let currentScreen='home';
+function navTo(id){const c=document.querySelector('.screen.active');if(c){c.classList.remove('active');c.style.display='none'}const t=document.getElementById(id);t.style.display='block';void t.offsetWidth;t.classList.add('active');currentScreen=id;window.scrollTo({top:0,behavior:'smooth'});document.querySelectorAll('.nav-item').forEach(i=>i.classList.toggle('active',i.dataset.screen===id));if(id==='mev'&&currentStep==='result')resetMEV()}
 
-        currentScreen = screenId;
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+let currentStep=1;
+function nextStep(s){if(currentStep===1&&!document.getElementById('mevNome').value.trim()){showToast('⚠️ Preencha o nome da criança');return}anim(currentStep,s)}
+function prevStep(s){anim(currentStep,s)}
+function anim(from,to){const f=document.getElementById('step'+from),t=document.getElementById('step'+to);f.style.opacity='0';f.style.transform='translateX('+(to>from?'-20px':'20px')+')';setTimeout(()=>{f.style.display='none';f.style.opacity='';f.style.transform='';t.style.display='block';t.style.opacity='0';t.style.transform='translateX('+(to>from?'20px':'-20px')+')';void t.offsetWidth;t.style.transition='opacity .3s,transform .3s';t.style.opacity='1';t.style.transform='translateX(0)';setTimeout(()=>t.style.transition='',300)},200);currentStep=to;updProg();window.scrollTo({top:0,behavior:'smooth'})}
+function updProg(){document.querySelectorAll('.progress-step').forEach((s,i)=>{s.classList.remove('done','active');if(i<currentStep-1)s.classList.add('done');if(i===currentStep-1)s.classList.add('active')});const c=document.getElementById('stepCounter');if(c&&typeof currentStep==='number')c.innerHTML='Etapa <strong>'+currentStep+'</strong> de 6'}
 
-        // Atualiza nav
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.toggle('active', item.dataset.screen === screenId);
-        });
-    }
+function updateSlider(el,id){const v=parseInt(el.value),t=document.getElementById(id);t.textContent=v;t.classList.remove('low','mid','high');t.classList.add(v<=3?'low':v<=6?'mid':'high');const p=(v/10)*100;el.style.background='linear-gradient(to right,var(--terracotta) 0%,var(--honey) '+p/2+'%,var(--leaf) '+p+'%,#e0e0e0 '+p+'%,#e0e0e0 100%)'}
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('input[type="range"]').forEach(s=>{const m=s.getAttribute('oninput')?.match(/'(\w+)'/);if(m)updateSlider(s,m[1])})});
 
-    /* ==============================================
-       FORMULÁRIO MEV — Steps
-    ============================================== */
-    let currentStep = 1;
-    const totalSteps = 6;
+function toggleMed(){document.getElementById('fieldMedDetalhe').style.display=document.getElementById('mevMedicamentos').value==='Sim'?'block':'none'}
 
-    function nextStep(step) {
-        // Validação step 1
-        if (currentStep === 1) {
-            const nome = document.getElementById('mevNome').value.trim();
-            if (!nome) {
-                showToast('Por favor, preencha o nome da criança.');
-                return;
-            }
-        }
+function showResult(){
+    const sc={sono:+document.getElementById('mevSono').value,alimentacao:+document.getElementById('mevAlimentacao').value,ativFisica:+document.getElementById('mevAtivFisica').value,humor:+document.getElementById('mevHumor').value,natureza:+document.getElementById('mevNatureza').value};
+    const total=Object.values(sc).reduce((a,b)=>a+b,0),pct=Math.round(total/50*100);
+    let niv,cor;if(pct>=75){niv='🌟 Excelente';cor='#52b788'}else if(pct>=50){niv='🌿 Bom';cor='#e9a23b'}else if(pct>=30){niv='⚠️ Atenção';cor='#c96442'}else{niv='🚨 Alerta';cor='#d64045'}
+    const ps=[{k:'sono',e:'😴',n:'Sono'},{k:'alimentacao',e:'🥦',n:'Aliment.'},{k:'ativFisica',e:'⚽',n:'Atividade'},{k:'humor',e:'🧠',n:'Humor'},{k:'natureza',e:'🌳',n:'Natureza'}];
+    const circ=2*Math.PI*46,off=circ-(pct/100)*circ;
+    let ph=ps.map(p=>'<div class="pillar-item"><div class="emoji">'+p.e+'</div><div class="val">'+sc[p.k]+'/10</div><div class="pname">'+p.n+'</div></div>').join('');
+    let bh=ps.map(p=>{const w=sc[p.k]*10,c=w>=70?'#95d5b2':w>=40?'#e9a23b':'#d64045';return'<div class="result-bar-item"><div class="bar-label"><span>'+p.e+' '+p.n+'</span><span>'+sc[p.k]+'/10</span></div><div class="bar-track"><div class="bar-fill" style="width:0%;background:'+c+'" data-w="'+w+'%"></div></div></div>'}).join('');
+    document.getElementById('stepResult').innerHTML='<div class="result-card"><p style="font-size:.82rem;opacity:.7;margin-bottom:2px">Resultado da Avaliação MEV</p><div class="score-ring"><svg width="110" height="110"><circle cx="55" cy="55" r="46" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="6"/><circle cx="55" cy="55" r="46" fill="none" stroke="'+cor+'" stroke-width="6" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" id="scoreArc"/></svg><span class="score-number">'+pct+'%</span></div><p style="font-size:1.1rem;font-weight:700;margin-bottom:2px">'+niv+'</p><p style="font-size:.78rem;opacity:.7">Índice de Estilo de Vida Saudável</p><div class="pillar-summary">'+ph+'</div><div class="result-bars">'+bh+'</div></div><button class="btn btn-whatsapp" onclick="enviarWhatsApp()"><span class="material-icons-round">send</span> Enviar para o '+CONFIG.doctorName+'</button><p class="text-small">Abre seu WhatsApp com os dados completos.</p><button class="btn btn-outline" onclick="resetMEV()"><span class="material-icons-round">refresh</span> Nova Avaliação</button>';
+    document.getElementById('step'+currentStep).style.display='none';document.getElementById('stepResult').style.display='block';currentStep='result';document.querySelectorAll('.progress-step').forEach(s=>s.classList.add('done'));document.getElementById('stepCounter').innerHTML='<strong>✅ Completo</strong>';
+    setTimeout(()=>{const a=document.getElementById('scoreArc');if(a){a.style.transition='stroke-dashoffset 1.2s cubic-bezier(.22,1,.36,1)';a.style.strokeDashoffset=off}document.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w)},200);
+    window.scrollTo({top:0,behavior:'smooth'})
+}
 
-        document.getElementById('step' + currentStep).style.display = 'none';
-        document.getElementById('step' + step).style.display = 'block';
-        currentStep = step;
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+function enviarWhatsApp(){
+    document.getElementById('sendingOverlay').classList.add('show');
+    setTimeout(()=>{document.getElementById('sendingOverlay').classList.remove('show');
+    const g=id=>{const e=document.getElementById(id);if(!e)return'—';if(e.type==='range')return e.value+'/10';return e.value||'—'};
+    const t=`🌿 *AVALIAÇÃO MEV — PEDIATRIA INTEGRATIVA*\n━━━━━━━━━━━━━━━━━━━━━━\n\n👤 *PACIENTE*\n• Nome: ${g('mevNome')}\n• Idade: ${g('mevIdade')}\n• Responsável: ${g('mevResponsavel')}\n• Tel: ${g('mevTelefone')}\n\n😴 *SONO*\n• Qualidade: ${g('mevSono')}\n• Horas: ${g('mevHorasSono')}\n• Dificuldade: ${g('mevDificSono')}\n\n🥦 *ALIMENTAÇÃO*\n• Qualidade: ${g('mevAlimentacao')}\n• Dieta: ${g('mevDieta')}\n• Frutas: ${g('mevFrutas')}\n\n🚽 *INTESTINO*\n• Bristol: ${g('mevIntestino')}\n• Frequência: ${g('mevFreqEvac')}\n• Hidratação: ${g('mevAgua')}\n\n🏃 *ATIVIDADE*\n• Nível: ${g('mevAtivFisica')}\n• Esporte: ${g('mevEsporte')}\n\n🧠 *EMOCIONAL*\n• Humor: ${g('mevHumor')}\n• Sinais: ${g('mevEmocional')}\n• Autoestima: ${g('mevPerspectiva')}\n\n👨‍👩‍👧 *SOCIAL*\n• Família: ${g('mevFamilia')}\n• Social: ${g('mevSocial')}\n• Natureza: ${g('mevNatureza')}\n\n📱 *TELAS*\n• Tempo: ${g('mevTelas')}\n• À noite: ${g('mevTelaNoite')}\n• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos')==='Sim'?' → '+g('mevMedDetalhe'):''}\n• Suplementos: ${g('mevSuplementos')}\n• Exposição: ${g('mevSubstancias')}\n\n📋 *OBSERVAÇÕES*\n• Queixa: ${g('mevQueixa')}\n• Outras: ${g('mevObs')}\n• Expectativa: ${g('mevExpectativa')}\n\n━━━━━━━━━━━━━━━━━━━━━━\n_📊 Via WebApp ${CONFIG.doctorName}_`;
+    window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(t),'_blank')},1200)}
 
-    function prevStep(step) {
-        document.getElementById('step' + currentStep).style.display = 'none';
-        document.getElementById('step' + step).style.display = 'block';
-        currentStep = step;
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+function openWhatsApp(){window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent('Olá! Gostaria de mais informações sobre o consultório do '+CONFIG.doctorName+'.'),'_blank')}
 
-    function updateProgress() {
-        const steps = document.querySelectorAll('.progress-step');
-        steps.forEach((s, i) => {
-            s.classList.remove('done', 'active');
-            if (i < currentStep - 1) s.classList.add('done');
-            if (i === currentStep - 1) s.classList.add('active');
-        });
-    }
+function resetMEV(){document.querySelectorAll('#mev input,#mev select,#mev textarea').forEach(e=>{if(e.type==='range')e.value=5;else if(e.tagName==='SELECT')e.selectedIndex=0;else e.value=''});['sonoVal','alimentVal','ativVal','humorVal','naturezaVal'].forEach(id=>{const e=document.getElementById(id);if(e){e.textContent='5';e.className='slider-value mid'}});document.querySelectorAll('input[type="range"]').forEach(s=>{s.style.background='';const m=s.getAttribute('oninput')?.match(/'(\w+)'/);if(m)updateSlider(s,m[1])});document.querySelectorAll('.mev-step').forEach(s=>{s.style.display='none';s.style.opacity='';s.style.transform=''});document.getElementById('step1').style.display='block';document.getElementById('fieldMedDetalhe').style.display='none';currentStep=1;updProg();window.scrollTo({top:0,behavior:'smooth'})}
 
-    /* ==============================================
-       SLIDERS — Atualização visual
-    ============================================== */
-    function updateSlider(input, targetId) {
-        document.getElementById(targetId).textContent = input.value;
-    }
-
-    /* ==============================================
-       MEDICAMENTOS — Toggle campo detalhe
-    ============================================== */
-    document.getElementById('mevMedicamentos').addEventListener('change', function() {
-        document.getElementById('fieldMedDetalhe').style.display = 
-            this.value === 'Sim' ? 'block' : 'none';
-    });
-
-    /* ==============================================
-       RESULTADO MEV — Cálculo e Exibição
-    ============================================== */
-    function showResult() {
-        const scores = {
-            sono:         parseInt(document.getElementById('mevSono').value),
-            alimentacao:  parseInt(document.getElementById('mevAlimentacao').value),
-            ativFisica:   parseInt(document.getElementById('mevAtivFisica').value),
-            humor:        parseInt(document.getElementById('mevHumor').value),
-            natureza:     parseInt(document.getElementById('mevNatureza').value),
-        };
-
-        const total = Object.values(scores).reduce((a, b) => a + b, 0);
-        const maxTotal = 50;
-        const percent = Math.round((total / maxTotal) * 100);
-
-        let nivel, cor;
-        if (percent >= 75)       { nivel = '🌟 Excelente'; cor = '#52b788'; }
-        else if (percent >= 50) { nivel = '🌿 Bom'; cor = '#e9a23b'; }
-        else if (percent >= 30) { nivel = '⚠️ Atenção'; cor = '#c96442'; }
-        else                    { nivel = '🚨 Alerta'; cor = '#d64045'; }
-
-        const labels = {
-            sono: 'Sono',
-            alimentacao: 'Alimentação',
-            ativFisica: 'Atividade Física',
-            humor: 'Humor',
-            natureza: 'Natureza'
-        };
-
-        let barsHTML = '';
-        for (const [key, val] of Object.entries(scores)) {
-            const pct = val * 10;
-            barsHTML += `
-                <div class="result-bar-item">
-                    <div class="bar-label">
-                        <span>${labels[key]}</span>
-                        <span>${val}/10</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width:${pct}%;background:${pct >= 70 ? '#95d5b2' : pct >= 40 ? '#e9a23b' : '#d64045'}"></div>
-                    </div>
-                </div>`;
-        }
-
-        document.getElementById('resultCard').innerHTML = `
-            <p style="font-size:0.85rem;opacity:0.8;margin-bottom:4px;">Resultado da Avaliação MEV</p>
-            <div class="score-circle" style="border:3px solid ${cor};">
-                <span class="score-number">${percent}%</span>
-            </div>
-            <p style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">${nivel}</p>
-            <p class="score-label">Índice de Estilo de Vida Saudável</p>
-            <div class="result-bars">${barsHTML}</div>
-        `;
-
-        document.getElementById('step' + currentStep).style.display = 'none';
-        document.getElementById('stepResult').style.display = 'block';
-        currentStep = 'result';
-        
-        // Progress 100%
-        document.querySelectorAll('.progress-step').forEach(s => s.classList.add('done'));
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /* ==============================================
-       ENVIO WHATSAPP — Formata mensagem completa
-    ============================================== */
-    function enviarWhatsApp() {
-        const g = id => {
-            const el = document.getElementById(id);
-            if (!el) return '—';
-            if (el.type === 'range') return el.value + '/10';
-            return el.value || '—';
-        };
-
-        const texto = `🌿 *AVALIAÇÃO MEV — PEDIATRIA INTEGRATIVA*
-━━━━━━━━━━━━━━━━━━━━━━
-
-👤 *PACIENTE*
-• Nome: ${g('mevNome')}
-• Idade: ${g('mevIdade')}
-• Responsável: ${g('mevResponsavel')}
-• Telefone: ${g('mevTelefone')}
-
-😴 *SONO & ENERGIA*
-• Qualidade: ${g('mevSono')}
-• Horas/noite: ${g('mevHorasSono')}
-• Dificuldade: ${g('mevDificSono')}
-
-🥦 *ALIMENTAÇÃO*
-• Qualidade: ${g('mevAlimentacao')}
-• Dieta: ${g('mevDieta')}
-• Frutas/vegetais: ${g('mevFrutas')}
-
-🚽 *INTESTINO & HIDRATAÇÃO*
-• Padrão (Bristol): ${g('mevIntestino')}
-• Frequência: ${g('mevFreqEvac')}
-• Hidratação: ${g('mevAgua')}
-
-🏃 *ATIVIDADE FÍSICA*
-• Nível: ${g('mevAtivFisica')}
-• Esporte: ${g('mevEsporte')}
-
-🧠 *HUMOR & EMOCIONAL*
-• Humor: ${g('mevHumor')}
-• Sinais: ${g('mevEmocional')}
-• Autoestima: ${g('mevPerspectiva')}
-
-👨‍👩‍👧 *AMBIENTE & SOCIAL*
-• Família: ${g('mevFamilia')}
-• Socialização: ${g('mevSocial')}
-• Natureza: ${g('mevNatureza')}
-
-📱 *TELAS & SUBSTÂNCIAS*
-• Tempo de tela: ${g('mevTelas')}
-• Tela antes de dormir: ${g('mevTelaNoite')}
-• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos') === 'Sim' ? ' → ' + g('mevMedDetalhe') : ''}
-• Suplementos: ${g('mevSuplementos')}
-• Exposição substâncias: ${g('mevSubstancias')}
-
-📋 *QUEIXAS & OBSERVAÇÕES*
-• Principal: ${g('mevQueixa')}
-• Outras: ${g('mevObs')}
-• Expectativa: ${g('mevExpectativa')}
-
-━━━━━━━━━━━━━━━━━━━━━━
-_📊 Enviado via WebApp ${CONFIG.doctorName}_`;
-
-        const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(texto)}`;
-        window.open(url, '_blank');
-    }
-
-    function openWhatsApp() {
-        window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=Olá! Gostaria de mais informações sobre o consultório do ${CONFIG.doctorName}.`, '_blank');
-    }
-
-    /* ==============================================
-       RESET MEV
-    ============================================== */
-    function resetMEV() {
-        // Reset todos os campos
-        document.querySelectorAll('#mev input, #mev select, #mev textarea').forEach(el => {
-            if (el.type === 'range') {
-                el.value = 5;
-            } else if (el.tagName === 'SELECT') {
-                el.selectedIndex = 0;
-            } else {
-                el.value = '';
-            }
-        });
-
-        // Reset slider values
-        ['sonoVal', 'alimentVal', 'ativVal', 'humorVal', 'naturezaVal'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = '5';
-        });
-
-        // Volta para step 1
-        document.querySelectorAll('.mev-step').forEach(s => s.style.display = 'none');
-        document.getElementById('step1').style.display = 'block';
-        currentStep = 1;
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /* ==============================================
-       TOAST (notificações)
-    ============================================== */
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        toast.textContent = msg;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2500);
-    }
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
 </script>
-
 </body>
 </html>
