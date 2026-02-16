@@ -32,7 +32,8 @@
         .hero h1{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--moss);margin:14px 0 2px;animation:hi .7s .1s cubic-bezier(.22,1,.36,1) both}
         .hero .tagline{font-size:.88rem;color:var(--fern);font-weight:600;animation:hi .7s .18s cubic-bezier(.22,1,.36,1) both}
         .hero .crm{font-size:.7rem;color:var(--text-soft);margin-top:4px;opacity:.6;animation:hi .7s .22s cubic-bezier(.22,1,.36,1) both}
-        .hero .institution{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:6px 16px;background:var(--sand);border-radius:20px;font-size:.7rem;color:var(--bark);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;animation:hi .7s .26s cubic-bezier(.22,1,.36,1) both}
+        .hero .institution{display:inline-flex;align-items:center;gap:4px;margin-top:10px;padding:6px 16px;background:var(--sand);border-radius:20px;font-size:.7rem;color:var(--bark);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;animation:hi .7s .26s cubic-bezier(.22,1,.36,1) both;cursor:pointer;transition:transform 0.2s, background 0.2s}
+        .hero .institution:active{transform:scale(0.95);background:#e0dcd4}
         @keyframes hi{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
         .menu-grid{display:flex;flex-direction:column;gap:10px;margin-top:8px}
         .card{background:var(--glass);backdrop-filter:blur(12px);border-radius:var(--r-lg);padding:16px 15px;display:flex;align-items:center;gap:13px;cursor:pointer;transition:transform .18s,box-shadow .18s;border:1px solid rgba(255,255,255,.5);box-shadow:var(--shadow-sm);-webkit-tap-highlight-color:transparent}.card:active{transform:scale(.97)}
@@ -111,7 +112,7 @@
         <h1>Dr. Diogo Kroetz</h1>
         <p class="tagline">Pediatria & Acupuntura</p>
         <div class="crm">CRM-SC 12260 · RQE 12417 · RQE 12418</div>
-        <div class="institution"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</div>
+        <div class="institution" onclick="window.open('https://www.instagram.com/institutomerak', '_blank')"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</div>
     </div>
     <div class="menu-grid">
         <div class="card card-featured" onclick="navTo('mev')"><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde</h3><p>Raio-X da saúde: sono, nutrição, emoções e mais.</p></div></div>
@@ -246,7 +247,7 @@
     <p class="section-subtitle">Estamos no <strong>Instituto Merak</strong>.</p>
     <a class="contact-item" href="https://wa.me/5547999730160?text=Olá!%20Gostaria%20de%20agendar%20consulta%20com%20o%20Dr.%20Diogo." target="_blank"><span class="material-icons-round" style="color:#25D366">chat</span><div><span class="label">WhatsApp — Secretária</span><br><span class="detail">Agendar consulta ou dúvidas</span></div></a>
     <a class="contact-item" href="tel:+5547999730160"><span class="material-icons-round" style="color:var(--fern)">call</span><div><span class="label">Telefone</span><br><span class="detail">(47) 99973-0160</span></div></a>
-    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Instituto+Merak+Joinville+Av+Santos+Dumont+2400" target="_blank"><span class="material-icons-round" style="color:var(--terracotta)">location_on</span><div><span class="label">Instituto Merak</span><br><span class="detail">Av. Santos Dumont, 2400 — Joinville</span></div></a>
+    <a class="contact-item" href="https://www.google.com/maps/search/?api=1&query=Av.+Santos+Dumont,+2400+-+Distrito+Industrial,+Joinville+-+SC" target="_blank"><span class="material-icons-round" style="color:var(--terracotta)">location_on</span><div><span class="label">Instituto Merak</span><br><span class="detail">Av. Santos Dumont, 2400 — Joinville</span></div></a>
     <a class="contact-item" href="https://www.instagram.com/diogoviniciuskroetz" target="_blank"><span class="material-icons-round" style="color:#E1306C">photo_camera</span><div><span class="label">Instagram</span><br><span class="detail">@diogoviniciuskroetz</span></div></a>
     <div class="form-card mt-16"><div class="form-card-header"><span class="material-icons-round">event</span><h2>Modalidades</h2></div>
     <div class="field"><label>🏥 <strong>Presencial</strong> — Instituto Merak</label></div>
@@ -337,6 +338,3 @@ function showToast(m){const t=document.getElementById('toast');t.textContent=m;t
 </script>
 </body>
 </html>
-
-```
-
