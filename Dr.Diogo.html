@@ -139,7 +139,7 @@
     </style>
 </head>
 <body>
-<div class="splash" id="splash"><img src="perfil.jpg" alt="" class="splash-logo"><div class="splash-name">Dr. Diogo Kroetz</div><div class="splash-sub">Pediatria Integrativa</div><div class="splash-loader"></div></div>
+<div class="splash" id="splash"><img src="perfil.jpg" alt="" class="splash-logo"><div class="splash-name">Dr. Diogo Kroetz</div><div class="splash-sub">Pediatria & Acupuntura</div><div class="splash-loader"></div></div>
 <div class="sending-overlay" id="sendingOverlay"><div class="ck"><span class="material-icons-round">check</span></div><p>Abrindo WhatsApp...</p></div>
 <div class="app" id="app">
 
@@ -147,13 +147,13 @@
     <div class="hero">
         <div class="profile-ring"><img src="perfil.jpg" alt="Dr. Diogo Kroetz" class="profile-img"></div>
         <h1>Dr. Diogo Kroetz</h1>
-        <p class="tagline">Pediatria Integrativa & Medicina do Estilo de Vida</p>
+        <p class="tagline">Pediatria & Acupuntura</p>
         <div class="crm">CRM-SC 12260 · RQE 12417 · RQE 12418</div>
         <div class="institution"><span class="material-icons-round" style="font-size:13px">eco</span> Instituto Merak · Joinville</div>
     </div>
     <div class="menu-grid">
         <div class="card card-featured" onclick="navTo('mev')"><span class="badge">Novo</span><div class="card-icon green"><span class="material-icons-round">spa</span></div><div><h3>Avaliação de Saúde MEV</h3><p>Raio-X do estilo de vida: sono, nutrição, emoções e mais.</p></div></div>
-        <div class="card" onclick="navTo('treatments')"><div class="card-icon orange"><span class="material-icons-round">medical_services</span></div><div><h3>Nossa Abordagem</h3><p>Medicina Integrativa focada na causa raiz.</p></div></div>
+        <div class="card" onclick="navTo('treatments')"><div class="card-icon orange"><span class="material-icons-round">medical_services</span></div><div><h3>Nossa Abordagem</h3><p>Pediatria focada na causa raiz.</p></div></div>
         <div class="card" onclick="navTo('contact')"><div class="card-icon blue"><span class="material-icons-round">calendar_today</span></div><div><h3>Agendar Consulta</h3><p>Presencial ou Telemedicina.</p></div></div>
         <div class="card" onclick="navTo('articles')"><div class="card-icon honey"><span class="material-icons-round">auto_stories</span></div><div><h3>Conteúdos & Artigos</h3><p>Conhecimento para famílias conscientes.</p></div></div>
     </div>
@@ -238,10 +238,10 @@
 <div id="treatments" class="screen">
     <button class="btn-back" onclick="navTo('home')"><span class="material-icons-round">arrow_back</span> Início</button>
     <h1 class="section-title">Nossa Abordagem 🌱</h1>
-    <p class="section-subtitle">Medicina Integrativa com foco na causa raiz.</p>
-    <div class="treatment-card"><span class="material-icons-round">local_florist</span><div><h3>Puericultura Integrativa</h3><p>Crescimento, vacinas, marcos do desenvolvimento e orientação global.</p></div></div>
+    <p class="section-subtitle">Medicina Pediatria  com foco na causa raiz.</p>
+    <div class="treatment-card"><span class="material-icons-round">local_florist</span><div><h3>Puericultura Pediatria </h3><p>Crescimento, vacinas, marcos do desenvolvimento e orientação global.</p></div></div>
     <div class="treatment-card"><span class="material-icons-round">restaurant</span><div><h3>Nutrição & Suplementação</h3><p>Correção de carências vitamínicas e orientação alimentar personalizada.</p></div></div>
-    <div class="treatment-card"><span class="material-icons-round">psychology</span><div><h3>Saúde Mental & Comportamento</h3><p>Sono, ansiedade, TDAH e autorregulação emocional integrativa.</p></div></div>
+    <div class="treatment-card"><span class="material-icons-round">psychology</span><div><h3>Saúde Mental & Comportamento</h3><p>Sono, ansiedade, TDAH e autorregulação emocional Pediatria .</p></div></div>
     <div class="treatment-card"><span class="material-icons-round">spa</span><div><h3>Medicina do Estilo de Vida</h3><p>6 pilares: sono, alimentação, atividade, estresse, relações, substâncias.</p></div></div>
     <div class="treatment-card"><span class="material-icons-round">eco</span><div><h3>Conexão com a Natureza</h3><p>Agrofloresta como ferramenta terapêutica e de desenvolvimento.</p></div></div>
     <div class="treatment-card"><span class="material-icons-round">self_improvement</span><div><h3>Acupuntura Pediátrica</h3><p>Técnicas suaves para equilíbrio energético e alívio de sintomas.</p></div></div>
@@ -322,7 +322,7 @@ function enviarWhatsApp(){
     document.getElementById('sendingOverlay').classList.add('show');
     setTimeout(()=>{document.getElementById('sendingOverlay').classList.remove('show');
     const g=id=>{const e=document.getElementById(id);if(!e)return'—';if(e.type==='range')return e.value+'/10';return e.value||'—'};
-    const t=`🌿 *AVALIAÇÃO MEV — PEDIATRIA INTEGRATIVA*\n━━━━━━━━━━━━━━━━━━━━━━\n\n👤 *PACIENTE*\n• Nome: ${g('mevNome')}\n• Idade: ${g('mevIdade')}\n• Responsável: ${g('mevResponsavel')}\n• Tel: ${g('mevTelefone')}\n\n😴 *SONO*\n• Qualidade: ${g('mevSono')}\n• Horas: ${g('mevHorasSono')}\n• Dificuldade: ${g('mevDificSono')}\n\n🥦 *ALIMENTAÇÃO*\n• Qualidade: ${g('mevAlimentacao')}\n• Dieta: ${g('mevDieta')}\n• Frutas: ${g('mevFrutas')}\n\n🚽 *INTESTINO*\n• Bristol: ${g('mevIntestino')}\n• Frequência: ${g('mevFreqEvac')}\n• Hidratação: ${g('mevAgua')}\n\n🏃 *ATIVIDADE*\n• Nível: ${g('mevAtivFisica')}\n• Esporte: ${g('mevEsporte')}\n\n🧠 *EMOCIONAL*\n• Humor: ${g('mevHumor')}\n• Sinais: ${g('mevEmocional')}\n• Autoestima: ${g('mevPerspectiva')}\n\n👨‍👩‍👧 *SOCIAL*\n• Família: ${g('mevFamilia')}\n• Social: ${g('mevSocial')}\n• Natureza: ${g('mevNatureza')}\n\n📱 *TELAS*\n• Tempo: ${g('mevTelas')}\n• À noite: ${g('mevTelaNoite')}\n• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos')==='Sim'?' → '+g('mevMedDetalhe'):''}\n• Suplementos: ${g('mevSuplementos')}\n• Exposição: ${g('mevSubstancias')}\n\n📋 *OBSERVAÇÕES*\n• Queixa: ${g('mevQueixa')}\n• Outras: ${g('mevObs')}\n• Expectativa: ${g('mevExpectativa')}\n\n━━━━━━━━━━━━━━━━━━━━━━\n_📊 Via WebApp ${CONFIG.doctorName}_`;
+    const t=`🌿 *AVALIAÇÃO MEV — PEDIATRIA Pediatria *\n━━━━━━━━━━━━━━━━━━━━━━\n\n👤 *PACIENTE*\n• Nome: ${g('mevNome')}\n• Idade: ${g('mevIdade')}\n• Responsável: ${g('mevResponsavel')}\n• Tel: ${g('mevTelefone')}\n\n😴 *SONO*\n• Qualidade: ${g('mevSono')}\n• Horas: ${g('mevHorasSono')}\n• Dificuldade: ${g('mevDificSono')}\n\n🥦 *ALIMENTAÇÃO*\n• Qualidade: ${g('mevAlimentacao')}\n• Dieta: ${g('mevDieta')}\n• Frutas: ${g('mevFrutas')}\n\n🚽 *INTESTINO*\n• Bristol: ${g('mevIntestino')}\n• Frequência: ${g('mevFreqEvac')}\n• Hidratação: ${g('mevAgua')}\n\n🏃 *ATIVIDADE*\n• Nível: ${g('mevAtivFisica')}\n• Esporte: ${g('mevEsporte')}\n\n🧠 *EMOCIONAL*\n• Humor: ${g('mevHumor')}\n• Sinais: ${g('mevEmocional')}\n• Autoestima: ${g('mevPerspectiva')}\n\n👨‍👩‍👧 *SOCIAL*\n• Família: ${g('mevFamilia')}\n• Social: ${g('mevSocial')}\n• Natureza: ${g('mevNatureza')}\n\n📱 *TELAS*\n• Tempo: ${g('mevTelas')}\n• À noite: ${g('mevTelaNoite')}\n• Medicamentos: ${g('mevMedicamentos')}${g('mevMedicamentos')==='Sim'?' → '+g('mevMedDetalhe'):''}\n• Suplementos: ${g('mevSuplementos')}\n• Exposição: ${g('mevSubstancias')}\n\n📋 *OBSERVAÇÕES*\n• Queixa: ${g('mevQueixa')}\n• Outras: ${g('mevObs')}\n• Expectativa: ${g('mevExpectativa')}\n\n━━━━━━━━━━━━━━━━━━━━━━\n_📊 Via WebApp ${CONFIG.doctorName}_`;
     window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent(t),'_blank')},1200)}
 
 function openWhatsApp(){window.open('https://wa.me/'+CONFIG.whatsappNumber+'?text='+encodeURIComponent('Olá! Gostaria de mais informações sobre o consultório do '+CONFIG.doctorName+'.'),'_blank')}
@@ -333,6 +333,7 @@ function showToast(m){const t=document.getElementById('toast');t.textContent=m;t
 </script>
 </body>
 </html>
+
 
 
 
